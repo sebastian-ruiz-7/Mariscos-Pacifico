@@ -1,10 +1,18 @@
+//Import dependencies
 import React from 'react'
+import {BrowserRouter,Route,Routes} from 'react-router-dom'
 
+//Import internal dependencies
+import { Login } from '@pages/Login'
+
+import './App.css'
 const App = () => {
     return (
-        <div>
-            <h1>Hola, muy buenas</h1>    
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route exact path='/' element= {<Login />}/>
+            </Routes>
+        </BrowserRouter>
     )
 }
 
