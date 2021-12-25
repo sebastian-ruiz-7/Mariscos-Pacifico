@@ -1,0 +1,40 @@
+:root{
+    font-size: 62.5%;
+    --white: #FFFFFF;
+    --black: #000000;
+    --text-input-field: #F7F7F7;
+    --orange: #FFCFAD;
+    --blue: #0FBED2;
+    --sm: 14px;
+    --md: 16px;
+    --lg: 18px;
+}
+
+body {
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+    /* box-sizing: border-box; */
+}
+
+
+.category-card{
+    width: 326px;
+    height: 70px;
+    border: var(--orange) solid 2px;
+    border-radius: 8px;
+    margin: 10px 0;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.category-card__p{
+    font-size: 2rem;
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+.category-card__img{
+    padding-right: 20px;
+}
