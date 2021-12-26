@@ -4,7 +4,7 @@ import {BrowserRouter,Route,Routes} from 'react-router-dom'
 
 //Import internal dependencies
 import { Login } from '@pages/Login'
-import { Home } from '@pages/Home'
+import { Home } from '@pages/Home/Home.jsx'
 //Import styles
 import './App.css'
 

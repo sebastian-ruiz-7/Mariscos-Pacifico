@@ -1,3 +1,4 @@
+//Import assets
 import camaron from '@assets/camaron.png';
 import coctel from '@assets/coctel.png';
 import filete from '@assets/filete.png';
@@ -7,6 +8,8 @@ import pulpo from '@assets/pulpo.png';
 import sopas from '@assets/sopas.png';
 import taco from '@assets/taco.png';
 import tostadas from '@assets/tostadas.png';
+import postres from '@assets/postres.png';
+import bebidas from '@assets/bebidas.png';
 
 const useGetImageName=(imageName)=>{
 
@@ -28,6 +31,10 @@ const useGetImageName=(imageName)=>{
         return taco;
     } else if (imageName==='tostadas') {
         return tostadas;
+    } else if (imageName==='postres') {
+        return postres;
+    } else if (imageName==='bebidas') {
+        return bebidas;
     }
 }
 
