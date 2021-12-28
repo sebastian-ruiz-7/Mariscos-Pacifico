@@ -10,6 +10,7 @@ import taco from '@assets/taco.png';
 import tostadas from '@assets/tostadas.png';
 import postres from '@assets/postres.png';
 import bebidas from '@assets/bebidas.png';
+import botanas from '@assets/botanas.png';
 
 const useGetImageName=(imageName)=>{
 
@@ -35,6 +36,8 @@ const useGetImageName=(imageName)=>{
         return postres;
     } else if (imageName==='bebidas') {
         return bebidas;
+    } else if (imageName==='botanas') {
+        return botanas;
     }
 }
 

@@ -1,7 +1,8 @@
 .navigation-menu-container{
     width: 100vw;
     max-width: 400px;
-    background-color: var(--blue);
+    background-color: var(--white);
+    border-top: solid 2px var(--blue);
     margin: none;
     height: 60px;
     position: fixed;

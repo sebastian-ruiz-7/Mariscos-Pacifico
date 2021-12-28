@@ -1,0 +1,14 @@
+.item-order-container{
+    width: 330px;
+    border: solid 2px var(--orange);   
+    border-radius: 8px;
+}
+
+.item-order-container__name{
+    background-color: var(--orange);
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    padding: 2px 0;
+}
