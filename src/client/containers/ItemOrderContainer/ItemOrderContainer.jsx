@@ -5,20 +5,20 @@ import '@containers/ItemOrderContainer/ItemOrderContainer.css';
 //Import containers
 import { ItemOrder } from '@components/ItemOrder/ItemOrder'
 
-const Cocteles = () => {
+const Cocteles = ({onClick}) => {
     return (
         <div className='item-order-container'>
-            <p className='item-order-container__name'>Cocteles</p>
+            <p onClick={onClick}  className='item-order-container__name'>Cocteles</p>
             <ItemOrder itemName='Coctel Mediano'/>
             <ItemOrder itemName='Coctel Grande'/>   
         </div>
     )
 }
 
-const Tostadas = () => {
+const Tostadas = ({onClick}) => {
     return (
         <div className='item-order-container'>
-            <p className='item-order-container__name'>Tostadas</p>
+            <p onClick={onClick} className='item-order-container__name'>Tostadas</p>
             <ItemOrder itemName='Marlin'/>
             <ItemOrder itemName='Ceviche de Pescado'/>
             <ItemOrder itemName='Ceviche de Camarón'/>
@@ -28,10 +28,10 @@ const Tostadas = () => {
     )
 }
 
-const Tacos = () => {
+const Tacos = ({onClick}) => {
     return (
         <div className='item-order-container'>
-            <p className='item-order-container__name'>Tacos</p>
+            <p onClick={onClick} className='item-order-container__name'>Tacos</p>
             <ItemOrder itemName='Camarón'/>
             <ItemOrder itemName='Pescado'/>
             <ItemOrder itemName='Marlin'/>
@@ -39,10 +39,10 @@ const Tacos = () => {
     )
 }
 
-const Filetes = () => {
+const Filetes = ({onClick}) => {
     return (
         <div className='item-order-container'>
-            <p className='item-order-container__name'>Filetes</p>
+            <p onClick={onClick} className='item-order-container__name'>Filetes</p>
             <ItemOrder itemName='Empanizado'/>
             <ItemOrder itemName='Mojo de Ajo'/>
             <ItemOrder itemName='Mantequilla'/>
@@ -54,10 +54,10 @@ const Filetes = () => {
     )
 }
 
-const Bebidas = () => {
+const Bebidas = ({onClick}) => {
     return (
         <div className='item-order-container'>
-            <p className='item-order-container__name'>Bebidas</p>
+            <p onClick={onClick} className='item-order-container__name'>Bebidas</p>
             <ItemOrder itemName='Victoria'/>
             <ItemOrder itemName='Estrella'/>
             <ItemOrder itemName='Corona'/>
@@ -75,10 +75,10 @@ const Bebidas = () => {
     )
 }
 
-const Camarones = () => {
+const Camarones = ({onClick}) => {
     return (
         <div className='item-order-container'>
-            <p className='item-order-container__name'>Camarones</p>
+            <p onClick={onClick} className='item-order-container__name'>Camarones</p>
             <ItemOrder itemName='Diabla'/>
             <ItemOrder itemName='Mojo de Ajo'/>
             <ItemOrder itemName='Mantequilla'/>
@@ -90,10 +90,10 @@ const Camarones = () => {
     )
 }
 
-const Ordenes = () => {
+const Ordenes = ({onClick}) => {
     return (
         <div className='item-order-container'>
-            <p className='item-order-container__name'>Órdenes</p>
+            <p onClick={onClick} className='item-order-container__name'>Órdenes</p>
             <ItemOrder itemName='Marlin'/>
             <ItemOrder itemName='Ceviche de Pescado'/>
             <ItemOrder itemName='Emp. de Camarón'/>
@@ -102,10 +102,10 @@ const Ordenes = () => {
     )
 }
 
-const Botanas = () => {
+const Botanas = ({onClick}) => {
     return (
         <div className='item-order-container'>
-            <p className='item-order-container__name'>Botanas</p>
+            <p onClick={onClick} className='item-order-container__name'>Botanas</p>
             <ItemOrder itemName='Aguachile Verde'/>
             <ItemOrder itemName='Aguachile Negro'/>
             <ItemOrder itemName='Botana de Camarón'/>
@@ -114,10 +114,10 @@ const Botanas = () => {
     )
 }
 
-const Sopas = () => {
+const Sopas = ({onClick}) => {
     return (
         <div className='item-order-container'>
-            <p className='item-order-container__name'>Sopas</p>
+            <p onClick={onClick} className='item-order-container__name'>Sopas</p>
             <ItemOrder itemName='Mariscos Grande'/>
             <ItemOrder itemName='Mariscos Chica'/>
             <ItemOrder itemName='Camarón Grande'/>
@@ -127,20 +127,20 @@ const Sopas = () => {
     )
 }
 
-const Postres = () => {
+const Postres = ({onClick}) => {
     return (
         <div className='item-order-container'>
-            <p className='item-order-container__name'>Postres</p>
+            <p onClick={onClick} className='item-order-container__name'>Postres</p>
             <ItemOrder itemName='Flan de Caramelo'/>
             <ItemOrder itemName='Flan de Cajeta'/>   
         </div>
     )
 }
 
-const Pescados = () => {
+const Pescados = ({onClick}) => {
     return (
         <div className='item-order-container'>
-            <p className='item-order-container__name'>Pescados</p>
+            <p onClick={onClick} className='item-order-container__name'>Pescados</p>
             <ItemOrder itemName='Mojarra Dorada'/>
             <ItemOrder itemName='Mojarra Mojo de Ajo'/>
             <ItemOrder itemName='Huachi. Dorado'/>
@@ -149,10 +149,10 @@ const Pescados = () => {
     )
 }
 
-const Pulpos = () => {
+const Pulpos = ({onClick}) => {
     return (
         <div className='item-order-container'>
-            <p className='item-order-container__name'>Pulpos</p>
+            <p onClick={onClick} className='item-order-container__name'>Pulpos</p>
             <ItemOrder itemName='Diabla'/>
             <ItemOrder itemName='Mojo de Ajo'/>
             <ItemOrder itemName='Mantequilla'/>

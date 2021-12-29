@@ -1,21 +1,3 @@
-:root{
-    font-size: 62.5%;
-    --white: #FFFFFF;
-    --black: #000000;
-    --text-input-field: #F7F7F7;
-    --orange: #FFCFAD;
-    --blue: #0FBED2;
-    --sm: 14px;
-    --md: 16px;
-    --lg: 18px;
-}
-
-body {
-    margin: 0;
-    font-family: 'Quicksand', sans-serif;
-    /* box-sizing: border-box; */
-}
-
 .LoginForm{
     width: 330px;
 }

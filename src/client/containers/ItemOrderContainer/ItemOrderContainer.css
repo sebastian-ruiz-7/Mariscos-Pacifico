@@ -2,6 +2,7 @@
     width: 330px;
     border: solid 2px var(--orange);   
     border-radius: 8px;
+    margin: 10px auto;
 }
 
 .item-order-container__name{

@@ -8,3 +8,12 @@
     position: fixed;
     bottom: 0;
 }
+
+.nav-menu__list{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: 1fr;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}

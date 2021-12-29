@@ -16,8 +16,9 @@ const useInitialState = () => {
         pulpos:false
     });
 
+
     return{
-        toggleCategory,setToggleCategory
+        toggleCategory,setToggleCategory, 
     }
 }
 

@@ -1,0 +1,26 @@
+.nav-menu__item{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.nav-menu__item img{
+    width: 32px;
+    height: 32px;
+    padding-top: 4px;
+}
+
+.nav-menu__item span{
+    padding-bottom: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    /* color: var(--white); */
+}
+
+.nav-menu__item--active{
+    background-color: var(--blue);
+    color: var(--white);
+}
