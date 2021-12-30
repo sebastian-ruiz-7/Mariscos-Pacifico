@@ -7,7 +7,7 @@ import { Cocteles, Tostadas, Tacos, Filetes, Bebidas, Camarones, Ordenes, Botana
 import { AppContext } from '@context/AppContext';
 //Import styles
 import '@containers/CategoryContainer/CategoryContainer.css'
-const CategoryContainer = () => {
+const CategoryContainer = ({TableNumber}) => {
 
     const {toggleCategory,setToggleCategory}=React.useContext(AppContext);
 
@@ -61,6 +61,8 @@ const CategoryContainer = () => {
 
     return (
         <main>
+
+            <p className='category-container__p'>Toma el pedido de la mesa {TableNumber}</p>
 
             {toggleCategory.cocteles  ? <Cocteles onClick={toggleCocteles}/>     : <CategoryCard description='Cocteles' imageName='coctel' onClick={toggleCocteles}/>}
             

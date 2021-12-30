@@ -1,16 +1,21 @@
 //Import dependencies
 import React from 'react'
-//Import styles
-import '@containers/ItemOrderContainer/ItemOrderContainer.css';
 //Import containers
 import { ItemOrder } from '@components/ItemOrder/ItemOrder'
+//Import Context
+import { AppContext } from '@context/AppContext';
+//Import styles
+import '@containers/ItemOrderContainer/ItemOrderContainer.css';
 
 const Cocteles = ({onClick}) => {
+
+    const {order,setOrder} = React.useContext(AppContext);
+
     return (
         <div className='item-order-container'>
             <p onClick={onClick}  className='item-order-container__name'>Cocteles</p>
-            <ItemOrder itemName='Coctel Mediano'/>
-            <ItemOrder itemName='Coctel Grande'/>   
+            <ItemOrder category='cocteles' item='mediano' itemName='Coctel Mediano'/>
+            <ItemOrder category='cocteles' item='grande' itemName='Coctel Grande'/>   
         </div>
     )
 }

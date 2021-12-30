@@ -16,9 +16,23 @@ const useInitialState = () => {
         pulpos:false
     });
 
+    const [tableNumber,setTableNumber] = React.useState(false);
+
+    const [order,setOrder] = React.useState({
+        cocteles:{
+            grande:0,
+            mediano:0,
+        },tostadas:{
+            marlin:0,
+            cevichePescado:0,
+            cevicheCamaron:0,
+            camaron:0,
+            pulpo:0
+        }
+    })
 
     return{
-        toggleCategory,setToggleCategory, 
+        toggleCategory,setToggleCategory,tableNumber,setTableNumber,order,setOrder
     }
 }
 

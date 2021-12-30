@@ -1,3 +1,10 @@
+.category-container__p{
+    text-align: center;
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+
 .EvitarOverflow{
     height: 60px;
 }

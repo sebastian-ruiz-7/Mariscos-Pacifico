@@ -1,0 +1,13 @@
+.table-container{
+    margin: 10px auto;
+    width: 326px; 
+    border: 2px solid var(--orange);
+    height: 70px;
+    border-radius: 8px;
+}
+
+.table-container p{
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-align: center;
+}
