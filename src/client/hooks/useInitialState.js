@@ -1,5 +1,7 @@
+//Import dependencies
 import React from 'react'
-
+//Import hooks
+import { menu } from '@hooks/useGetMenu';
 const useInitialState = () => {
     const [toggleCategory,setToggleCategory]=React.useState({
         cocteles:false,
@@ -18,18 +20,8 @@ const useInitialState = () => {
 
     const [tableNumber,setTableNumber] = React.useState(false);
 
-    const [order,setOrder] = React.useState({
-        cocteles:{
-            grande:0,
-            mediano:0,
-        },tostadas:{
-            marlin:0,
-            cevichePescado:0,
-            cevicheCamaron:0,
-            camaron:0,
-            pulpo:0
-        }
-    })
+
+    const [order,setOrder] = React.useState(menu);
 
     return{
         toggleCategory,setToggleCategory,tableNumber,setTableNumber,order,setOrder

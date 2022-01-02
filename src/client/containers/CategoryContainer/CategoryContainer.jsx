@@ -11,52 +11,8 @@ const CategoryContainer = ({TableNumber}) => {
 
     const {toggleCategory,setToggleCategory}=React.useContext(AppContext);
 
-    const toggleCocteles = ()=>{
-        setToggleCategory(prev=>({...prev,cocteles:!prev.cocteles}));
-    }
-
-    const toggleTostadas = ()=>{
-        setToggleCategory(prev=>({...prev,tostadas:!prev.tostadas}))
-    }
-
-    const toggleTacos = ()=>{
-        setToggleCategory(prev=>({...prev,tacos:!prev.tacos}))
-    }
-
-    const toggleFiletes = ()=>{
-        setToggleCategory(prev=>({...prev,filetes:!prev.filetes}))
-    }
-
-    const toggleBebidas = ()=>{
-        setToggleCategory(prev=>({...prev,bebidas:!prev.bebidas}))
-    }
-
-    const toggleCamarones = ()=>{
-        setToggleCategory(prev=>({...prev,camarones:!prev.camarones}))
-    }
-
-    const toggleOrdenes = ()=>{
-        setToggleCategory(prev=>({...prev,ordenes:!prev.ordenes}))
-    }
-
-    const toggleBotanas = ()=>{
-        setToggleCategory(prev=>({...prev,botanas:!prev.botanas}))
-    }
-
-    const toggleSopas = ()=>{
-        setToggleCategory(prev=>({...prev,sopas:!prev.sopas}))
-    }
-
-    const togglePostres = ()=>{
-        setToggleCategory(prev=>({...prev,postres:!prev.postres}))
-    }
-
-    const togglePescados = ()=>{
-        setToggleCategory(prev=>({...prev,pescados:!prev.pescados}))
-    }
-
-    const togglePulpos = ()=>{
-        setToggleCategory(prev=>({...prev,pulpos:!prev.pulpos}))
+    const toggleCategoryHandler=(category)=>{
+        setToggleCategory(prevState => ({...prevState,[category] : !prevState[category]}))
     }
 
     return (
@@ -64,29 +20,29 @@ const CategoryContainer = ({TableNumber}) => {
 
             <p className='category-container__p'>Toma el pedido de la mesa {TableNumber}</p>
 
-            {toggleCategory.cocteles  ? <Cocteles onClick={toggleCocteles}/>     : <CategoryCard description='Cocteles' imageName='coctel' onClick={toggleCocteles}/>}
+            {toggleCategory.cocteles  ? <Cocteles onClick={()=>{toggleCategoryHandler('cocteles')}}/>     : <CategoryCard description='Cocteles' imageName='coctel' onClick={()=>{toggleCategoryHandler('cocteles')}}/>}
             
-            {toggleCategory.tostadas  ? <Tostadas onClick={toggleTostadas}/>     : <CategoryCard description='Tostadas' imageName='tostadas' onClick={toggleTostadas}/>}
+            {toggleCategory.tostadas  ? <Tostadas onClick={()=>{toggleCategoryHandler('tostadas')}}/>     : <CategoryCard description='Tostadas' imageName='tostadas' onClick={()=>{toggleCategoryHandler('tostadas')}}/>}
 
-            {toggleCategory.tacos     ? <Tacos onClick={toggleTacos}/>           : <CategoryCard description='Tacos' imageName='taco' onClick={toggleTacos}/>}
+            {toggleCategory.tacos     ? <Tacos onClick={()=>{toggleCategoryHandler('tacos')}}/>           : <CategoryCard description='Tacos' imageName='taco' onClick={()=>{toggleCategoryHandler('tacos')}}/>}
 
-            {toggleCategory.filetes   ? <Filetes onClick={toggleFiletes}/>       : <CategoryCard description='Filetes' imageName='filete' onClick={toggleFiletes}/>}
+            {toggleCategory.filetes   ? <Filetes onClick={()=>{toggleCategoryHandler('filetes')}}/>       : <CategoryCard description='Filetes' imageName='filete' onClick={()=>{toggleCategoryHandler('filetes')}}/>}
 
-            {toggleCategory.bebidas   ? <Bebidas onClick={toggleBebidas}/>       : <CategoryCard description='Bebidas' imageName='bebidas' onClick={toggleBebidas}/>}
+            {toggleCategory.bebidas   ? <Bebidas onClick={()=>{toggleCategoryHandler('bebidas')}}/>       : <CategoryCard description='Bebidas' imageName='bebidas' onClick={()=>{toggleCategoryHandler('bebidas')}}/>}
 
-            {toggleCategory.camarones ? <Camarones onClick={toggleCamarones}/>   : <CategoryCard description='Camarones' imageName='camaron' onClick={toggleCamarones}/>}
+            {toggleCategory.camarones ? <Camarones onClick={()=>{toggleCategoryHandler('camarones')}}/>   : <CategoryCard description='Camarones' imageName='camaron' onClick={()=>{toggleCategoryHandler('camarones')}}/>}
 
-            {toggleCategory.ordenes   ? <Ordenes onClick={toggleOrdenes}/>       : <CategoryCard description='Órdenes' imageName='ordenes' onClick={toggleOrdenes}/>}
+            {toggleCategory.ordenes   ? <Ordenes onClick={()=>{toggleCategoryHandler('ordenes')}}/>       : <CategoryCard description='Órdenes' imageName='ordenes' onClick={()=>{toggleCategoryHandler('ordenes')}}/>}
 
-            {toggleCategory.botanas   ? <Botanas onClick={toggleBotanas}/>       : <CategoryCard description='Botanas' imageName='botanas' onClick={toggleBotanas}/>}
+            {toggleCategory.botanas   ? <Botanas onClick={()=>{toggleCategoryHandler('botanas')}}/>       : <CategoryCard description='Botanas' imageName='botanas' onClick={()=>{toggleCategoryHandler('botanas')}}/>}
 
-            {toggleCategory.sopas     ? <Sopas onClick={toggleSopas}/>           : <CategoryCard description='Sopas' imageName='sopas' onClick={toggleSopas}/>}
+            {toggleCategory.sopas     ? <Sopas onClick={()=>{toggleCategoryHandler('sopas')}}/>           : <CategoryCard description='Sopas' imageName='sopas' onClick={()=>{toggleCategoryHandler('sopas')}}/>}
 
-            {toggleCategory.postres   ? <Postres onClick={togglePostres}/>       : <CategoryCard description='Postres' imageName='postres' onClick={togglePostres}/>}
+            {toggleCategory.postres   ? <Postres onClick={()=>{toggleCategoryHandler('postres')}}/>       : <CategoryCard description='Postres' imageName='postres' onClick={()=>{toggleCategoryHandler('postres')}}/>}
 
-            {toggleCategory.pescados  ? <Pescados onClick={togglePescados}/>     : <CategoryCard description='Pescados' imageName='pescado' onClick={togglePescados}/>}
+            {toggleCategory.pescados  ? <Pescados onClick={()=>{toggleCategoryHandler('pescados')}}/>     : <CategoryCard description='Pescados' imageName='pescado' onClick={()=>{toggleCategoryHandler('pescados')}}/>}
 
-            {toggleCategory.pulpos    ? <Pulpos onClick={togglePulpos}/>         : <CategoryCard description='Pulpos' imageName='pulpo' onClick={togglePulpos}/>}
+            {toggleCategory.pulpos    ? <Pulpos onClick={()=>{toggleCategoryHandler('pulpos')}}/>         : <CategoryCard description='Pulpos' imageName='pulpo' onClick={()=>{toggleCategoryHandler('pulpos')}}/>}
 
             <div className='EvitarOverflow'></div>
         </main>

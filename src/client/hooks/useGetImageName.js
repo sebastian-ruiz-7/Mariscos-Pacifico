@@ -14,31 +14,22 @@ import botanas from '@assets/botanas.png';
 
 const useGetImageName=(imageName)=>{
 
-    if (imageName==='camaron') {
-        return camaron;
-    } else if (imageName==='coctel') {
-        return coctel;
-    } else if (imageName==='filete') {
-        return filete;
-    } else if (imageName==='ordenes') {
-        return ordenes;
-    } else if (imageName==='pescado') {
-        return pescado;
-    } else if (imageName==='pulpo') {
-        return pulpo;
-    } else if (imageName==='sopas') {
-        return sopas;
-    } else if (imageName==='taco') {
-        return taco;
-    } else if (imageName==='tostadas') {
-        return tostadas;
-    } else if (imageName==='postres') {
-        return postres;
-    } else if (imageName==='bebidas') {
-        return bebidas;
-    } else if (imageName==='botanas') {
-        return botanas;
+    const assets={
+        camaron:()=>camaron,
+        coctel :()=>coctel,
+        filete :()=>filete,
+        ordenes:()=>ordenes,
+        pescado:()=>pescado,
+        pulpo  :()=>pulpo,
+        sopas  :()=>sopas,
+        taco   :()=>taco,
+        tostadas:()=>tostadas,
+        postres:()=>postres,
+        bebidas:()=>bebidas,
+        botanas:()=>botanas
     }
+
+    return assets[imageName]()
 }
 
 

@@ -11,9 +11,6 @@ const AbirMesa = () => {
 
     const {tableNumber} = React.useContext(AppContext);
 
-    // React.useEffect(()=>{
-    //     console.log(tableNumber)
-    // },[tableNumber])
 
     const tables=[1,2,3,4,5,6,7];
     return (

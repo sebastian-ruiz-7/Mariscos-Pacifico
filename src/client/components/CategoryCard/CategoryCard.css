@@ -39,3 +39,7 @@ body {
 .category-card__img{
     padding-right: 20px;
 }
+
+.avoid-overflow-table{
+    margin-top: 38px;
+}

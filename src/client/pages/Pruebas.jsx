@@ -1,13 +1,12 @@
 //Import dependencies
 import React from 'react'
-//Import containers
-import { TableItem } from '@components/TableItem/TableItem'
-
+//Import styles
+import '@pages/Pruebas.css'
 
 const Pruebas = () => {
     return (
         <>
-            <TableItem tableNumber='1'/>
+            
         </>
     )
 }

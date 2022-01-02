@@ -30,3 +30,16 @@
     width: 20px;
     text-align: center;
 }
+
+.form-Cabe-Pela-container{
+    width: 326px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8px;
+    box-sizing: border-box;
+}
+
+.form-Cabe-Pela-container label{
+    font-size: var(--lg);
+    font-weight: bold;
+}
