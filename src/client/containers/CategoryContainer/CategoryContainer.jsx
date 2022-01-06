@@ -3,22 +3,42 @@ import React from 'react'
 //Import components
 import { CategoryCard } from '@components/CategoryCard/CategoryCard'
 import { Cocteles, Tostadas, Tacos, Filetes, Bebidas, Camarones, Ordenes, Botanas, Sopas, Postres, Pescados, Pulpos} from '@containers/ItemOrderContainer/ItemOrderContainer';
+import { SubmitOrderButton } from '@components/SubmitOrderButton/SubmitOrderButton';
 //Import Context
 import { AppContext } from '@context/AppContext';
 //Import styles
 import '@containers/CategoryContainer/CategoryContainer.css'
+//Import assets
+import previous from '@assets/previous.png'
+
+
 const CategoryContainer = ({TableNumber}) => {
 
-    const {toggleCategory,setToggleCategory}=React.useContext(AppContext);
+    const {order,setOrder,toggleCategory,setToggleCategory}=React.useContext(AppContext);
+
+    
 
     const toggleCategoryHandler=(category)=>{
         setToggleCategory(prevState => ({...prevState,[category] : !prevState[category]}))
     }
 
+    const goBackToSelectTable=()=>{
+        location.href='/abrir-mesa'
+    }
+
+    React.useEffect(()=>{
+        const newOrder={...order}
+        newOrder['table']=TableNumber;
+        setOrder(newOrder);
+    },[])
+
     return (
         <main>
 
-            <p className='category-container__p'>Toma el pedido de la mesa {TableNumber}</p>
+            <div className='category-container'>
+                <img onClick={goBackToSelectTable} className='category-container__img' src={previous} alt="" />
+                <p className='category-container__p'>Toma el pedido de la mesa {TableNumber}</p>
+            </div>
 
             {toggleCategory.cocteles  ? <Cocteles onClick={()=>{toggleCategoryHandler('cocteles')}}/>     : <CategoryCard description='Cocteles' imageName='coctel' onClick={()=>{toggleCategoryHandler('cocteles')}}/>}
             
@@ -43,6 +63,8 @@ const CategoryContainer = ({TableNumber}) => {
             {toggleCategory.pescados  ? <Pescados onClick={()=>{toggleCategoryHandler('pescados')}}/>     : <CategoryCard description='Pescados' imageName='pescado' onClick={()=>{toggleCategoryHandler('pescados')}}/>}
 
             {toggleCategory.pulpos    ? <Pulpos onClick={()=>{toggleCategoryHandler('pulpos')}}/>         : <CategoryCard description='Pulpos' imageName='pulpo' onClick={()=>{toggleCategoryHandler('pulpos')}}/>}
+
+            <SubmitOrderButton/>
 
             <div className='EvitarOverflow'></div>
         </main>

@@ -12,15 +12,12 @@ const camaronSequence=[];
 
 const ItemOrder = ({itemName,category,item}) => {
 
-    const {order,setOrder} = React.useContext(AppContext);
+    const {order,setOrder,openModal} = React.useContext(AppContext);
 
     const [count,setCount] = React.useState(0);
 
     //Este estado solo se usara para la lógica display del formulario de los camarones pelados o con cabeza
     const [disableCamaron,setDisabledCamaron] = React.useState(false); 
-
-    //Este estado es utilizado para guardar la secuencia de los camarones pelados o con cabeza y que funcione correctamente cuando se elimina un elemento
-    //const [camaronSequence,setCamaronSequence] = React.useState();
 
     const subtractElement=()=>{
         if (count===0) {
@@ -35,12 +32,30 @@ const ItemOrder = ({itemName,category,item}) => {
                     lastItemSelected !==0 && setOrder(prevState => ({...prevState,...prevState[category][item][lastItemSelected] = prevState[category][item][lastItemSelected]-1}))
                 }
                 
+            }else if (category==='cocteles') {
+                const newOrder={...order};
+                const index=getLastItemIndex();
+                newOrder['cocteles']['coctelesSequence'].splice(index,1)
+                setOrder(newOrder)
+                setOrder(prevState => ({...prevState,...prevState[category][item] = count-1}));
             } else{
                 setOrder(prevState => ({...prevState,...prevState[category][item] = count-1}));
             }
             disableCamaron===true && setDisabledCamaron(false)
             setCount(count-1);
         }
+    }
+
+    const getLastItemIndex=()=>{
+        const currentArrayofCoctelesSequence=[...order['cocteles']['coctelesSequence']]
+        let i=currentArrayofCoctelesSequence.length-1
+        for(i; i>0;i--){
+            if (currentArrayofCoctelesSequence[i].tamaño===item) {
+                console.log(currentArrayofCoctelesSequence[i].tamaño);
+                break;
+            }
+        }
+        return i;
     }
 
     const addElement=()=>{
@@ -50,7 +65,14 @@ const ItemOrder = ({itemName,category,item}) => {
             setDisabledCamaron(true)
             count===0 ? setOrder(prevState => ({...prevState,...prevState[category][item] = {total:count+1}})) : setOrder(prevState => ({...prevState,...prevState[category][item]['total'] = count+1}));
             setCount(count+1)
-        } else{
+        } else if (category==='cocteles') {
+            const newOrder={...order};
+            newOrder[category]['selectedSize']=item;
+            setOrder(newOrder);
+            openModal(true);
+            setCount(count+1)
+            setOrder(prevState => ({...prevState,...prevState[category][item] = count+1}));
+        }else{
             setCount(count+1)
             setOrder(prevState => ({...prevState,...prevState[category][item] = count+1}));
         }

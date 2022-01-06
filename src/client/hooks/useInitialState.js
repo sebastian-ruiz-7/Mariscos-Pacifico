@@ -23,8 +23,13 @@ const useInitialState = () => {
 
     const [order,setOrder] = React.useState(menu);
 
+    const [modal,openModal] = React.useState(false);
+
+    //const [coctelesItem,setCoctelesItem] = React.useState({})
+
+
     return{
-        toggleCategory,setToggleCategory,tableNumber,setTableNumber,order,setOrder
+        toggleCategory,setToggleCategory,tableNumber,setTableNumber,order,setOrder,modal,openModal,
     }
 }
 
