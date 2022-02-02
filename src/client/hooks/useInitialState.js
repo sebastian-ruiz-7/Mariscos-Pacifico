@@ -1,7 +1,6 @@
 //Import dependencies
 import React from 'react'
 //Import hooks
-import { menu } from '@hooks/useGetMenu';
 const useInitialState = () => {
     const [toggleCategory,setToggleCategory]=React.useState({
         cocteles:false,
@@ -20,16 +19,14 @@ const useInitialState = () => {
 
     const [tableNumber,setTableNumber] = React.useState(false);
 
-
-    const [order,setOrder] = React.useState(menu);
+    const [order,setOrder] = React.useState({});
 
     const [modal,openModal] = React.useState(false);
 
-    //const [coctelesItem,setCoctelesItem] = React.useState({})
-
+    const [lastCoctelSizeSelected,setLastCoctelSizeSelected]=React.useState(undefined)
 
     return{
-        toggleCategory,setToggleCategory,tableNumber,setTableNumber,order,setOrder,modal,openModal,
+        toggleCategory,setToggleCategory,tableNumber,setTableNumber,order,setOrder,modal,openModal,lastCoctelSizeSelected,setLastCoctelSizeSelected
     }
 }
 

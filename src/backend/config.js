@@ -3,7 +3,8 @@ dotenv.config()
 
 module.exports={
     api:{
-        port:process.env.PORT
+        port:process.env.PORT,
+        address: 'http://localhost:3000/'
     },
     database:{
         host: process.env.DB_HOST,

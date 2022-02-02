@@ -11,10 +11,11 @@ const SubmitOrderButton = () => {
 
     const submitOrder=(event)=>{
         event.preventDefault()
-        //event.preventDefault()
-        console.log(order)
-        // order['cocteles']['mediano'] && openModal(true)
-        // order['cocteles']['grande'] &&  openModal(true)
+        if (Object.getOwnPropertyNames(order).length===1) {
+            console.log('no has ordenado nada');
+        }else{
+            console.log(order)
+        }
     }
 
 

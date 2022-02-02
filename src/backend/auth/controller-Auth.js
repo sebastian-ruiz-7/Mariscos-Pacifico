@@ -10,6 +10,7 @@ module.exports=(store)=>{
         try {
             data.password=await bcrypt.hash(data.password,5);
             delete data.name;
+            delete data.puesto;
             const newAuthRow=store.add('auth',data);
             return newAuthRow;
         } catch (error) {
@@ -29,14 +30,16 @@ module.exports=(store)=>{
             if (!data.email) {
                 throw new SyntaxError('Invalid query');
             }
-            let desiredUser=await store.get('auth',{email:data.email});
-            if (Object.keys(desiredUser).length===0) {
+            let verifyUser=await store.get('auth',{email:data.email});
+            if (Object.keys(verifyUser).length===0) {
                 throw new SyntaxError('Contraseña o correo incorrecto');
             }
-            desiredUser=desiredUser[0];
-            const match=await bcrypt.compare(data.password,desiredUser.password)
+            verifyUser=verifyUser[0];
+            const match=await bcrypt.compare(data.password,verifyUser.password)
             if (match) {
-                const token=jwtHandling.sign(JSON.parse(JSON.stringify({id:desiredUser.id,email:desiredUser.email})));
+                let desiredUser=await store.get('users',{email:data.email});
+                desiredUser=desiredUser[0]
+                const token=jwtHandling.sign(JSON.parse(JSON.stringify({id:desiredUser.id,email:desiredUser.email,puesto:desiredUser.puesto})));
                 return token;
             }else{
                 throw new SyntaxError('Contraseña o correo incorrecto');

@@ -13,8 +13,8 @@ import '@containers/CoctelesLogic/CoctelesLogic.css'
 
 const CoctelesLogic = () => {
 
-    const {order,setOrder,openModal} = React.useContext(AppContext);
-    const [totalCoctel,setTotalCocteles] =React.useState(0);
+    const {order,setOrder,openModal,lastCoctelSizeSelected} = React.useContext(AppContext);
+    //const [totalCoctel,setTotalCocteles] =React.useState(0);
     const [coctelesItem,setCoctelesItem] =React.useState([])
     const [insideCoctel,setInsideCoctel] =React.useState([])
     const [error,setError] =React.useState(false);
@@ -49,18 +49,18 @@ const CoctelesLogic = () => {
         event.preventDefault()
         if (coctelesItem.length===0 || insideCoctel.length===0) {
             setError(true)
+            return
         } else{
             const newOrder={...order};
             const currentCoctel={
-                tamaño:newOrder['cocteles']['selectedSize'],
                 deQue:[...coctelesItem],
                 conQue:[...insideCoctel]
             }
-            if (!newOrder['cocteles']['coctelesSequence']) {
-                newOrder['cocteles']['coctelesSequence']=[currentCoctel];
+            if (!newOrder['cocteles'][lastCoctelSizeSelected]['coctelesSequence']) {
+                newOrder['cocteles'][lastCoctelSizeSelected]['coctelesSequence']=[currentCoctel];
                 setOrder(newOrder)
             }else{
-                newOrder['cocteles']['coctelesSequence'].push(currentCoctel);
+                newOrder['cocteles'][lastCoctelSizeSelected]['coctelesSequence'].push(currentCoctel);
                 setOrder(newOrder)
             }
         }
@@ -72,7 +72,7 @@ const CoctelesLogic = () => {
         <>
             <form className='cocteles-logic-container' action="">
 
-                <p className='cocteles-logic__p'> ¿Cómo es es coctel:{` (${order['cocteles']['selectedSize']})`}?  </p>
+                <p className='cocteles-logic__p'> ¿Cómo es es coctel:{lastCoctelSizeSelected}?  </p>
                 
                 {error && (<p className='error-message'>Debes seleccionar cómo va el coctel</p>)}
 

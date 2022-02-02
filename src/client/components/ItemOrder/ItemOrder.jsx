@@ -8,93 +8,170 @@ import plus from '@assets/plus.png';
 //Import Context
 import { AppContext } from '@context/AppContext';
 
-const camaronSequence=[];
-
 const ItemOrder = ({itemName,category,item}) => {
 
-    const {order,setOrder,openModal} = React.useContext(AppContext);
+    const {order,setOrder,openModal,setLastCoctelSizeSelected} = React.useContext(AppContext);
 
     const [count,setCount] = React.useState(0);
 
     //Este estado solo se usara para la lógica display del formulario de los camarones pelados o con cabeza
     const [disableCamaron,setDisabledCamaron] = React.useState(false); 
 
-    const subtractElement=()=>{
+    //This function has the logic to increment the count of the item selected
+    const addElement=()=>{
+        if (disableCamaron===true) {
+            return
+        }
+        setCount(count+1)
+        const newOrder=addNewElementToOrder()
+        setOrder(newOrder)
+    }
+
+    //This function has the logic to add the correct property to the object named order
+    const addNewElementToOrder=()=>{
+        let newOrder={...order}
+        if (!newOrder[category]) {
+            newOrder[category]={}
+        }
+        if (itemIsShrimp()) {
+            //This block of code only works for the shrimp logic
+            setDisabledCamaron(true)
+            if (!newOrder[category][item]) {
+                newOrder[category][item]={}
+            }
+            newOrder[category][item]['total']=count+1
+        }else if (itemIsCoctel()) {
+            //This block of code only works for the cocteles logic
+            if (!newOrder[category][item]) {
+                newOrder[category][item]={}
+            }
+            newOrder[category][item]['total']=count+1
+            setLastCoctelSizeSelected(item)
+            openModal(true);
+        }
+        else{
+            //This will works for the rest of items
+            newOrder[category][item]=count+1
+        }
+        return newOrder
+    }
+
+    const itemIsShrimp=()=>{
+        if (category==='camarones' && (item==='diabla' || item==='mojoDeAjo' || item==='mantequilla' || item==='ajillo' || item==='natural')){
+            return true
+        }
+    }
+
+    const itemIsCoctel=()=>{
+        if (category==='cocteles') {
+            return true
+        }
+    }
+
+    //This function has the logic to select de type of shrimp
+    const cabezaPeladoHandler=(itemSelected)=>{
+        const newOrder={...order}
+        if (!newOrder[category][item]['shrimpSequence']) {
+            newOrder[category][item]['shrimpSequence']=[]
+        }
+
+        if (!newOrder[category][item][itemSelected]) {
+            newOrder[category][item][itemSelected]=1
+        }else{
+            newOrder[category][item][itemSelected]=newOrder[category][item][itemSelected]+1
+        }
+        newOrder[category][item]['shrimpSequence'].push(itemSelected)
+        setDisabledCamaron(false)
+        setOrder(newOrder)
+    }
+
+    //This function has the logic to decrement the count of the item selected
+    const removeElement=()=>{
         if (count===0) {
             return
+        }
+        setCount(count-1)
+        const newOrder=removeElementfromOrder()
+        setOrder(newOrder)
+    }
+
+    //This fuction has the logic to remove correctly the property from the object named order
+    const removeElementfromOrder=()=>{
+        let newOrder
+        if (itemIsShrimp()) {
+            newOrder=removeShrimpLogic()
+            newOrder=removePropertiesFromOrder(newOrder)
+        }else if (itemIsCoctel()) {
+            newOrder=removeCoctelLogic()
+            newOrder=removePropertiesFromOrder(newOrder)
+        }else{
+            newOrder={...order}
+            newOrder[category][item]=count-1
+            newOrder=removePropertiesFromOrder(newOrder)
+        }
+        return newOrder
+    }
+
+
+    const removeCoctelLogic=()=>{
+       const newOrder={...order}
+       newOrder[category][item]['total']=newOrder[category][item]['total']-1
+       newOrder[category][item]['coctelesSequence'].pop()
+       return newOrder
+    }
+
+
+    const removePropertiesFromOrder=(newOrder)=>{
+        if (itemIsShrimp()) {
+            if (newOrder[category][item]['cabeza']===0) {
+                delete newOrder[category][item]['cabeza']
+            }else if (newOrder[category][item]['pelados']===0) {
+                delete newOrder[category][item]['pelados']
+            }
+            if (newOrder[category][item]['total']===0) {
+                delete newOrder[category]
+            }
+        }else if (itemIsCoctel()) {
+            if (newOrder[category][item]['total']===0) {
+                delete newOrder[category][item]
+            }
+            if (Object.getOwnPropertyNames(newOrder[category]).length===0) {
+                delete newOrder[category]
+            }
         } else{
-            if (category==='camarones' && (item==='diabla' || item==='mojoDeAjo' || item==='mantequilla' || item==='ajillo' || item==='natural')){
-                setOrder(prevState => ({...prevState,...prevState[category][item]['total'] = count-1}))
-
-                if (disableCamaron===false) {
-                    const lastItemSelected=camaronSequence.pop();
-                    setOrder(prevState=>({...prevState,...prevState[category][item]['camaronSequence']=camaronSequence}));
-                    lastItemSelected !==0 && setOrder(prevState => ({...prevState,...prevState[category][item][lastItemSelected] = prevState[category][item][lastItemSelected]-1}))
-                }
-                
-            }else if (category==='cocteles') {
-                const newOrder={...order};
-                const index=getLastItemIndex();
-                newOrder['cocteles']['coctelesSequence'].splice(index,1)
-                setOrder(newOrder)
-                setOrder(prevState => ({...prevState,...prevState[category][item] = count-1}));
-            } else{
-                setOrder(prevState => ({...prevState,...prevState[category][item] = count-1}));
+            if (newOrder[category][item]===0) {
+                delete newOrder[category][item]
             }
-            disableCamaron===true && setDisabledCamaron(false)
-            setCount(count-1);
-        }
-    }
-
-    const getLastItemIndex=()=>{
-        const currentArrayofCoctelesSequence=[...order['cocteles']['coctelesSequence']]
-        let i=currentArrayofCoctelesSequence.length-1
-        for(i; i>0;i--){
-            if (currentArrayofCoctelesSequence[i].tamaño===item) {
-                console.log(currentArrayofCoctelesSequence[i].tamaño);
-                break;
+            if (Object.getOwnPropertyNames(newOrder[category]).length===0) {
+                delete newOrder[category]
             }
         }
-        return i;
+        return newOrder
     }
 
-    const addElement=()=>{
-        if (disableCamaron === true) {
-            return
-        } else if (category==='camarones' && (item==='diabla' || item==='mojoDeAjo' || item==='mantequilla' || item==='ajillo' || item==='natural')) {
-            setDisabledCamaron(true)
-            count===0 ? setOrder(prevState => ({...prevState,...prevState[category][item] = {total:count+1}})) : setOrder(prevState => ({...prevState,...prevState[category][item]['total'] = count+1}));
-            setCount(count+1)
-        } else if (category==='cocteles') {
-            const newOrder={...order};
-            newOrder[category]['selectedSize']=item;
-            setOrder(newOrder);
-            openModal(true);
-            setCount(count+1)
-            setOrder(prevState => ({...prevState,...prevState[category][item] = count+1}));
-        }else{
-            setCount(count+1)
-            setOrder(prevState => ({...prevState,...prevState[category][item] = count+1}));
+    const removeShrimpLogic=()=>{
+        const newOrder={...order}
+        if (!disableCamaron) {
+            const lastItem=newOrder[category][item]['shrimpSequence'].pop()
+            newOrder[category][item][lastItem]=newOrder[category][item][lastItem]-1;
         }
+        newOrder[category][item]['total']=newOrder[category][item]['total']-1
+            setDisabledCamaron(false)
+            return newOrder
     }
-    
-    const cabezaPeladoHandler=(itemSelected)=>{
-        order[category][item][itemSelected] && setOrder(prevState => ({...prevState,...prevState[category][item][itemSelected] = prevState[category][item][itemSelected]+1}));
-        !order[category][item][itemSelected] && setOrder(prevState => ({...prevState,...prevState[category][item][itemSelected] = 1}));
-        
-        camaronSequence.push(itemSelected);
-        setOrder(prevState=>({...prevState,...prevState[category][item]['camaronSequence']=camaronSequence}))
-        setDisabledCamaron(false);   
-    }
-    
+
     React.useEffect(()=>{
-        if (category==='camarones' && (item==='diabla' || item==='mojoDeAjo' || item==='mantequilla' || item==='ajillo' || item==='natural')){
-            (count!==0) && setCount(order[category][item]['total'])
-            //console.log(order[category][item]);
-        }else{
-            order[category][item] && setCount(order[category][item])
+        if (order[category]) {
+            if (itemIsShrimp() || itemIsCoctel()) {
+                if (!order[category][item]) {
+                    return
+                }else{
+                    order[category][item]['total'] && setCount(order[category][item]['total'])
+                }
+            }else{
+                order[category][item] && setCount(order[category][item])
+            }
         }
-        console.log(order)
     },[order])
 
     return (
@@ -103,7 +180,7 @@ const ItemOrder = ({itemName,category,item}) => {
                 <p className='item-order__name'>{itemName}</p>
 
                 <div className='order-handler'>
-                    <img className='order-handler__icon' onClick={subtractElement} src={negative} alt="" />
+                    <img className='order-handler__icon' onClick={removeElement} src={negative} alt="" />
                     <p className='order-handler__p'>{count}</p>
                     <img className='order-handler__icon' onClick={addElement} src={plus} alt="" />
 

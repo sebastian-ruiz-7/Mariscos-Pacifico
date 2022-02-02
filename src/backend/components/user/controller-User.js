@@ -27,11 +27,11 @@ module.exports=(store)=>{
             if (Object.keys(verifyUserIsNew).length>0) {
                 throw new TypeError('Email already taken')
             }
-
+            sortedData.puesto='empleado';
             const addUserRow=await store.add('users',sortedData);
             sortedData.password=req.body.password
             const addAuthRow=await auth.add(sortedData);
-            const token=jwt.sign(JSON.parse(JSON.stringify({id:sortedData.id,email:sortedData.email})))
+            const token=jwt.sign(JSON.parse(JSON.stringify({id:sortedData.id,email:sortedData.email,puesto:sortedData.puesto})))
             return token;
 
         } catch (error) {

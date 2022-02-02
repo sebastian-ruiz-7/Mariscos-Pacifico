@@ -53,6 +53,19 @@ const get=(table,data)=>{
     })
 }
 
+const getOpenTables=()=>{
+    return new Promise((resolve,reject)=>{
+        connection.query(`SELECT tableNumber FROM openTables`,(err,result)=>{
+            if (err) {
+                return reject(err)
+            }else{
+                return resolve(result)
+            }
+        })
+
+    })
+}
+
 const add=(table,data)=>{
     return new Promise((resolve,reject)=>{
         connection.query(`INSERT INTO ${table} SET ?`,data,(err,result)=>{
@@ -77,6 +90,30 @@ const update=(Table,data)=>{
     })
 };
 
+const updateTable=(Table,data)=>{
+    return new Promise((resolve,reject)=>{
+        connection.query(`UPDATE ${Table} SET ? WHERE tableNumber=?`,[data,data.tableNumber],(err,result)=>{
+            if (err) {
+                reject(err);
+            }else{
+                resolve(result);
+            }
+        })
+    })
+};
+
+const updateTableNumber=(Table,data,oldTableNumber)=>{
+    return new Promise((resolve,reject)=>{
+        connection.query(`UPDATE ${Table} SET ? WHERE tableNumber=?`,[data,oldTableNumber],(err,result)=>{
+            if (err) {
+                reject(err);
+            }else{
+                resolve(result);
+            }
+        })
+    })
+};
+
 const remove=(Table,data)=>{
     return new Promise((resolve,reject)=>{
         connection.query(`DELETE FROM ${Table} WHERE ?`,data,(err,result)=>{
@@ -91,7 +128,10 @@ const remove=(Table,data)=>{
 
 module.exports={
     get,
+    getOpenTables,
     add,
     update,
+    updateTable,
+    updateTableNumber,
     remove
 }

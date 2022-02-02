@@ -22,7 +22,8 @@ const Tostadas = ({onClick}) => {
         <div className='item-order-container'>
             <p onClick={onClick} className='item-order-container__name'>Tostadas</p>
             <ItemOrder category='tostadas' item='marlin' itemName='Marlin'/>
-            <ItemOrder category='tostadas' item='cevichePescado' itemName='Ceviche de Pescado'/>
+            <ItemOrder category='tostadas' item='cevichePicado' itemName='Ceviche Picado'/>
+            <ItemOrder category='tostadas' item='cevicheMolido' itemName='Ceviche Molido'/>
             <ItemOrder category='tostadas' item='cevicheCamaron' itemName='Ceviche de Camarón'/>
             <ItemOrder category='tostadas' item='camaron' itemName='Camarón'/>
             <ItemOrder category='tostadas' item='pulpo' itemName='Pulpo'/>
@@ -63,7 +64,7 @@ const Bebidas = ({onClick}) => {
             <ItemOrder category='bebidas' item='victoria' itemName='Victoria'/>
             <ItemOrder category='bebidas' item='estrella' itemName='Estrella'/>
             <ItemOrder category='bebidas' item='corona' itemName='Corona'/>
-            <ItemOrder category='bebidas' item='pacifico' itemName='Pacifico'/>
+            <ItemOrder category='bebidas' item='pacifico' itemName='Pacífico'/>
             <ItemOrder category='bebidas' item='negraModelo' itemName='Negra Modelo'/>
             <ItemOrder category='bebidas' item='modeloEspecial' itemName='Modelo Especial'/>
             <ItemOrder category='bebidas' item='coronaLigth' itemName='Corona Ligth'/>
@@ -97,7 +98,8 @@ const Ordenes = ({onClick}) => {
         <div className='item-order-container'>
             <p onClick={onClick} className='item-order-container__name'>Órdenes</p>
             <ItemOrder category='ordenes' item='marlin' itemName='Marlin'/>
-            <ItemOrder category='ordenes' item='cevichePescado' itemName='Ceviche de Pescado'/>
+            <ItemOrder category='ordenes' item='cevichePicado' itemName='Ceviche Picado'/>
+            <ItemOrder category='ordenes' item='cevicheMolido' itemName='Ceviche Molido'/>
             <ItemOrder category='ordenes' item='cevicheCamaron' itemName='Ceviche de Camarón'/>
             <ItemOrder category='ordenes' item='empCamaron' itemName='Emp. de Camarón'/>
             <ItemOrder category='ordenes' item='empMarlin' itemName='Emp. de Marlin'/>
@@ -111,7 +113,8 @@ const Botanas = ({onClick}) => {
             <p onClick={onClick} className='item-order-container__name'>Botanas</p>
             <ItemOrder category='botanas' item='aguachileVerde' itemName='Aguachile Verde'/>
             <ItemOrder category='botanas' item='aguachileNegro' itemName='Aguachile Negro'/>
-            <ItemOrder category='botanas' item='botanaCamaron' itemName='Botana de Camarón'/>
+            <ItemOrder category='botanas' item='camaron' itemName='Botana de Camarón'/>
+            <ItemOrder category='botanas' item='pulpo' itemName='Botana de Pulpo'/>
             <ItemOrder category='botanas' item='ensaladaCamaron' itemName='Ensalada de Camarón'/>
         </div>
     )

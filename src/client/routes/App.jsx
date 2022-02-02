@@ -23,7 +23,8 @@ const App = () => {
             <BrowserRouter>
                 <Routes>
                     <Route exact path='/' element= {<Login />}/>
-                    <Route exact path='/home' element= {<Home />}/>
+                    <Route exact path='/login' element= {<Login />}/>
+                    {/* <Route exact path='/home' element= {<Home />}/> */}
                     <Route exact path='/abrir-mesa' element= {<AbirMesa />}/>
                     <Route exact path='/pendientes' element= {<Pendientes />}/>
                     <Route exact path='/mesas-abiertas' element= {<MesasAbiertas />}/>

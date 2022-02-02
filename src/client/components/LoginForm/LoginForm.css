@@ -1,10 +1,15 @@
 .LoginForm{
-    width: 330px;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-content: center;
 }
 
 .LoginForm__form{
     display: flex;
     flex-direction: column;
+    align-content: center;
+    /* justify-content: center; */
     width: 330px;
 }
 
