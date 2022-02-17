@@ -9,7 +9,7 @@ const secure=require('../../auth/secure');
 //ROUTES
 router.get('/:id',secure('decodeToken'),getTable)    //get a specific Table
 router.get('/',secure('decodeToken'),getOpenTables)    //get the open Tables
-router.get('/pay/:id',secure('decodeToken'),payTable)    //get the open Tables
+router.get('/pay/:id',secure('decodeToken'),payTable)    //pay a Table
 
 router.post('/',secure('decodeToken'),addTable)    //This method will open a table
 
@@ -38,7 +38,7 @@ function payTable(req,res,next) {
 
 function addTable(req,res,next) {
     controller.addTable(req)
-        .then(message=>response.succes(req,res,message,200))
+        .then(message=>response.succes(req,res,message,201))
         .catch(next)
 }
 

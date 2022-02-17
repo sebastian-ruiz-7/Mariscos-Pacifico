@@ -1,15 +1,32 @@
 //Import dependencies
 import React from 'react'
 //Import containers
-import { CategoryContainer } from '@containers/CategoryContainer/CategoryContainer'
 import { NavigationMenu } from '@containers/NavigationMenu/NavigationMenu'
-
+import { useGetOpenTables } from '@hooks/useGetTables'
+import { TableItem } from '@components/TableItem/TableItem'
+import { CurrentOrderContainer } from '@containers/CurrentOrderContainer/CurrentOrderContainer'
+//Import Context
+import { AppContext } from '@context/AppContext'
 
 const MesasAbiertas = () => {
+    
+    const {tableNumber} = React.useContext(AppContext);
+    const [openTables,setOpenTables]=React.useState([])
+
+    React.useEffect(()=>{
+        const fetchData=async()=>{
+            const openTables=await useGetOpenTables()
+            setOpenTables(openTables);
+        }
+        fetchData()
+    },[])
+
     return (
         <>
-            <CategoryContainer />  
-            
+            {!tableNumber && openTables.map(table=>(<TableItem tableNumber={table} key={`TableNumber ${table}`}/>))}
+
+            {tableNumber && <CurrentOrderContainer/>}
+
             <NavigationMenu activeNavItem='mesas abiertas'/>
         </>
     )

@@ -20,36 +20,106 @@ module.exports=(store)=>{
     const payTable=async(id)=>{
         const table=await store.get('openTables',{tableNumber:id})
         let order={... table[0].order}
-        const total=getPrice(order)
+        const total=getPrices(order)
         return total
     }
 
-    const getPrice=(order)=>{
-        const categoryName=Object.getOwnPropertyNames(order)
-        let total=0
-        //This first loop will iterate over the category names and will get the item inside the category
-        for (let i = 0; i < categoryName.length; i++) {
-            const items=Object.getOwnPropertyNames(order[categoryName[i]])
-            //This second loop will iterate over the items in order to get the price of the item and the total amount
-            for (let j = 0; j < items.length; j++) {
-                if (menu[categoryName[i]][items[j]]) {
-                    total+=menu[categoryName[i]][items[j]].price*order[categoryName[i]][items[j]]
-                    console.log(menu[categoryName[i]][items[j]].name)
-                    console.log(total)
+    const getPrices=async(order)=>{
+        const categoryName=Object.entries(order)
+
+        const pricesPromises=[] //This array stores the promises related with the price
+        const products=[] //This array stores the correct data stucture of all products
+        let index=0
+
+
+        //The aim of this for loop is make the promises in order to get the price of one item in the order
+        //The second objective is stucture the order
+        for(const itemsList of categoryName){
+            let category=itemsList[0]
+            for(const j in itemsList[1]){
+                let item
+                if (itemIsCoctel(category)) {
+                    item={category:category,item:j,cantidad:itemsList[1][j]['total'],price:index} //This line make the data structure that I want
+                    let price=store.getPrice(category,j) //This line makes the query to the db to get the price [This is a promise]
+                    pricesPromises.push(price) //I'll separate all the promises in this array in order to make this endpoint parallel rather than sequential
+                    products.push(item) 
+                    index++
+                }else if (itemIsShrimp(category,j)) {
+                    if (itemsList[1][j]['cabeza']) {
+                        item={category:category,item:`${j} cabeza`,cantidad:itemsList[1][j]['cabeza'],price:index}
+                        let price=store.getPrice(category,'cabeza')
+                        pricesPromises.push(price)
+                        products.push(item) 
+                        index++
+                    }
+                    if (itemsList[1][j]['pelados']) {
+                        item={category:category,item:`${j} pelados`,cantidad:itemsList[1][j]['pelados'],price:index}
+                        let price=store.getPrice(category,'pelados')
+                        pricesPromises.push(price)
+                        products.push(item) 
+                        index++
+                    }
+                } else {
+                    item={category:category,item:j,cantidad:itemsList[1][j],price:index} //This line make the data structure that I want
+                    let price=store.getPrice(category,j) 
+                    pricesPromises.push(price) 
+                    products.push(item) 
+                    index++
                 }
+                 //The problem with the promises is that they need to be inside an array so they can be resolved otherwise they'll keep pendind
+                //That's why I just store the index of the pricePromise 
             }
         }
+
+        
+        const prices=await Promise.all(pricesPromises) // Wait to all promises are resolved
+
+        
+        //console.log(prices);
+        //console.log(products);
+
+        
+
+        //Now, I can change the index of the promises for the value of the item
+        products.map(changePrice=>{
+            let index=changePrice['price'];
+            changePrice['price']=prices[index][0].price
+        })
+
+        console.log(products);
+        
+
+        let total=0
+        products.map(item=>{
+            total+=item['cantidad']*item['price']
+        })
         return total;
+    }
+
+    const itemIsShrimp=(category,item)=>{
+        if (category==='camarones' && (item==='diabla' || item==='mojoDeAjo' || item==='mantequilla' || item==='ajillo' || item==='natural')){
+            return true
+        }
+    }
+
+    const itemIsCoctel=(category)=>{
+        if (category==='cocteles') {
+            return true
+        }
     }
 
     const addTable=async(req)=>{
         const dateTime=cleanDate()
-        let mesa=req.body.table;
-        if (mesa.toLowerCase()==='llevar' ) {
-            const time=cleanDate(true)
-            mesa=`${mesa}-${time}`
+        let mesa=req.body.tableNumber;
+        if (typeof(mesa)==='string') {
+            if (mesa.toLowerCase()==='llevar' ) {
+                const time=cleanDate(true)
+                mesa=`${mesa}-${time}`
+            }
         }
-        let order=cleanOrder(req.body)
+        let order=req.body
+        delete order['tableNumber']
+
         const mesero=req.user.id
         order=JSON.stringify(order)
         const abirMesa=await store.add('openTables',{tableNumber:mesa,fecha:dateTime,mesero:mesero,order:order})
@@ -64,9 +134,11 @@ module.exports=(store)=>{
 
     const updateTableNumber=async(reqBody)=>{
         let newTableNumber=reqBody.newTableNumber
-        if (newTableNumber.toLowerCase()==='llevar') {
-            const time=cleanDate(true)
-            newTableNumber=`${newTableNumber}-${time}`
+        if (typeof(newTableNumber)==='string') {
+            if (newTableNumber.toLowerCase()==='llevar') {
+                const time=cleanDate(true)
+                newTableNumber=`${newTableNumber}-${time}`
+            }
         }
         const changeOrder=await store.updateTableNumber('openTables',{tableNumber:newTableNumber},reqBody.oldTableNumber)
         return 'Procedimiento correcto'
@@ -92,16 +164,16 @@ module.exports=(store)=>{
         return date;
     }
 
-    const cleanOrder=(order)=>{
-        const properties=Object.getOwnPropertyNames(order)
-        for(let i=0; i<properties.length;i++){
-            if (Object.getOwnPropertyNames(order[properties[i]]).length==0) {
-                delete order[properties[i]]
-            }
-        }
-        delete order.table;
-        return order
-    }
+    // const cleanOrder=(order)=>{
+    //     const properties=Object.getOwnPropertyNames(order)
+    //     for(let i=0; i<properties.length;i++){
+    //         if (Object.getOwnPropertyNames(order[properties[i]]).length==0) {
+    //             delete order[properties[i]]
+    //         }
+    //     }
+    //     delete order.table;
+    //     return order
+    // }
 
     return{
         getTable,

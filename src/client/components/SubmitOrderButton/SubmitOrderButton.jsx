@@ -4,17 +4,21 @@ import React from 'react'
 import { AppContext } from '@context/AppContext';
 //Import styles
 import '@components/SubmitOrderButton/SubmitOrderButton.css'
+import { useSendOrder } from '@hooks/useSendOrder';
 
 const SubmitOrderButton = () => {
 
     const {order} = React.useContext(AppContext);
 
-    const submitOrder=(event)=>{
+    const submitOrder=async (event)=>{
         event.preventDefault()
         if (Object.getOwnPropertyNames(order).length===1) {
             console.log('no has ordenado nada');
         }else{
-            console.log(order)
+            const response=await useSendOrder(order)
+            if (response.status===201) {
+                location.href='/abrir-mesa'
+            }
         }
     }
 

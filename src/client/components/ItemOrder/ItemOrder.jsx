@@ -129,7 +129,7 @@ const ItemOrder = ({itemName,category,item}) => {
                 delete newOrder[category][item]['pelados']
             }
             if (newOrder[category][item]['total']===0) {
-                delete newOrder[category]
+                delete newOrder[category][item]
             }
         }else if (itemIsCoctel()) {
             if (newOrder[category][item]['total']===0) {

@@ -14,6 +14,14 @@ const TableItem = ({tableNumber}) => {
         setTableNumber(tableNumber)
     }
 
+    // const giveFormatTableNumber=()=>{
+    //     let fortatTableNumber=tableNumber
+    //     if (fortatTableNumber.length>4 && fortatTableNumber.substring(0,6).toLowerCase()==='llevar') {
+    //         fortatTableNumber=fortatTableNumber.substring(0,6)
+    //     }
+    //     return fortatTableNumber
+    // }
+
     return (
         <div onClick={selectTable} className='table-container'>
             <p>Mesa {tableNumber}</p>

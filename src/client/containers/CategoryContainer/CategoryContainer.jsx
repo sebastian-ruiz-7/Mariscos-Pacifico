@@ -8,14 +8,15 @@ import { SubmitOrderButton } from '@components/SubmitOrderButton/SubmitOrderButt
 import { AppContext } from '@context/AppContext';
 //Import styles
 import '@containers/CategoryContainer/CategoryContainer.css'
-//Import assets
-import previous from '@assets/previous.png'
+//Import hooks
+import { useGetImageName } from '@hooks/useGetImageName';
 
 
-const CategoryContainer = ({TableNumber}) => {
+const CategoryContainer = () => {
 
-    const {order,setOrder,toggleCategory,setToggleCategory}=React.useContext(AppContext);
+    const {tableNumber,order,setOrder,toggleCategory,setToggleCategory}=React.useContext(AppContext);
 
+    const previous=useGetImageName('previous');
     
 
     const toggleCategoryHandler=(category)=>{
@@ -28,7 +29,7 @@ const CategoryContainer = ({TableNumber}) => {
 
     React.useEffect(()=>{
         const newOrder={...order}
-        newOrder['table']=TableNumber;
+        newOrder['tableNumber']=tableNumber;
         setOrder(newOrder);
     },[])
 
@@ -37,7 +38,7 @@ const CategoryContainer = ({TableNumber}) => {
 
             <div className='category-container'>
                 <img onClick={goBackToSelectTable} className='category-container__img' src={previous} alt="" />
-                <p className='category-container__p'>Toma el pedido de la mesa {TableNumber}</p>
+                <p className='category-container__p'>Toma el pedido de la mesa {tableNumber}</p>
             </div>
 
             {toggleCategory.cocteles  ? <Cocteles onClick={()=>{toggleCategoryHandler('cocteles')}}/>     : <CategoryCard description='Cocteles' imageName='coctel' onClick={()=>{toggleCategoryHandler('cocteles')}}/>}
@@ -66,7 +67,6 @@ const CategoryContainer = ({TableNumber}) => {
 
             <SubmitOrderButton/>
 
-            <div className='EvitarOverflow'></div>
         </main>
     )
 }

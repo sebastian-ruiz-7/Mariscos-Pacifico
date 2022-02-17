@@ -126,6 +126,18 @@ const remove=(Table,data)=>{
     })
 };
 
+const getPrice=(category,item)=>{
+    return new Promise((resolve,reject)=>{
+        connection.query(`SELECT price FROM products WHERE category='${category}' AND item='${item}'`,(err,result)=>{
+            if (err) {
+                reject(err);
+            } else{
+                resolve(result)
+            }
+        })
+    })
+}
+
 module.exports={
     get,
     getOpenTables,
@@ -133,5 +145,6 @@ module.exports={
     update,
     updateTable,
     updateTableNumber,
-    remove
+    remove,
+    getPrice
 }

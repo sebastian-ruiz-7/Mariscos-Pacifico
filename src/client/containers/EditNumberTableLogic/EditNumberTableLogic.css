@@ -1,0 +1,57 @@
+.edit-number-table-logic-container{
+    display: flex;
+    flex-direction: column;
+    width: 330px;
+    background-color: var(--white);
+    border-radius: 8px;
+}
+
+.edit-number-table-logic__p{
+    font-size: var(--lg);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.edit-number-table-logic__input{
+    width: 300px;
+    height: 32px;
+    padding: 8px;
+    margin: 8px auto;
+    border: 0;
+    border-radius: 8px;
+    background-color: #ebebeb;
+    font-size: var(--md);
+    text-align: center;
+}
+
+.edit-number-table-buttons-container{
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.edit-number-table-logic__button{
+    width: 90px;
+    height: 48px;
+    cursor: pointer;
+    border: none;
+    font-weight: 500;
+    border-radius: 6px;
+    font-size: var(--md);
+}
+
+.edit-number-table-logic__button--cancel{
+    background: transparent;
+    color: red;
+}
+
+.edit-number-table-logic__button--submit{
+    background-color: var(--hospital-green);
+    color: var(--white);
+}
+
+.edit-number-table-logic__p--error{
+    color: red;
+    border: 0;
+    margin: 0;
+}

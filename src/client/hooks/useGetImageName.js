@@ -11,6 +11,9 @@ import tostadas from '@assets/tostadas.png';
 import postres from '@assets/postres.png';
 import bebidas from '@assets/bebidas.png';
 import botanas from '@assets/botanas.png';
+import previous from '@assets/previous.png';
+import setting from '@assets/setting.png';
+
 
 const useGetImageName=(imageName)=>{
 
@@ -26,7 +29,9 @@ const useGetImageName=(imageName)=>{
         tostadas:()=>tostadas,
         postres:()=>postres,
         bebidas:()=>bebidas,
-        botanas:()=>botanas
+        botanas:()=>botanas,
+        setting:()=>setting,
+        previous:()=>previous
     }
 
     return assets[imageName]()

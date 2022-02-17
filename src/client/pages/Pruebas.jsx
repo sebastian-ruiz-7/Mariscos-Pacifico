@@ -2,12 +2,13 @@
 import React from 'react'
 //Import styles
 import '@pages/Pruebas.css'
-import { CoctelesLogic } from '../containers/CoctelesLogic/CoctelesLogic'
+import { LoginForm } from '../components/LoginForm/LoginForm'
+//import { CoctelesLogic } from '../containers/CoctelesLogic/CoctelesLogic'
 
 const Pruebas = () => {
     return (
         <>
-            <CoctelesLogic />
+            <LoginForm />
         </>
     )
 }

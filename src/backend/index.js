@@ -23,6 +23,11 @@ app.use('/sales',sales)
 //Error handling by middleware
 app.use(error);
 
-app.listen(config.api.port,(err)=>{
+app.listen(config.api.port,'192.168.1.157',(err)=>{
     if (err) console.log(err)
-    else console.log(`Server listend in port ${config.api.port}`)})
+    else console.log(`Server listend in port ${config.api.port}`)
+})
+
+// app.listen(config.api.port,(err)=>{
+//     if (err) console.log(err)
+//     else console.log(`Server listend in port ${config.api.port}`)})

@@ -23,10 +23,12 @@ const useInitialState = () => {
 
     const [modal,openModal] = React.useState(false);
 
+    const [editingOrder,setEditingOrder]=React.useState(false)
+
     const [lastCoctelSizeSelected,setLastCoctelSizeSelected]=React.useState(undefined)
 
     return{
-        toggleCategory,setToggleCategory,tableNumber,setTableNumber,order,setOrder,modal,openModal,lastCoctelSizeSelected,setLastCoctelSizeSelected
+        toggleCategory,setToggleCategory,tableNumber,setTableNumber,order,setOrder,modal,openModal,lastCoctelSizeSelected,setLastCoctelSizeSelected,editingOrder,setEditingOrder
     }
 }
 

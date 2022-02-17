@@ -1,32 +1,33 @@
 //Import dependencies
 import React from 'react'
 //Import containers
-import { CategoryContainer } from '@containers/CategoryContainer/CategoryContainer'
-import { NavigationMenu } from '@containers/NavigationMenu/NavigationMenu'
-import { TableItem } from '@components/TableItem/TableItem'
-//Import Context
-import { AppContext } from '@context/AppContext'
-//Import components
-import { Modal } from '@containers/Modal/Modal'
-import { CoctelesLogic } from '@containers/CoctelesLogic/CoctelesLogic'
-
+import { AbrirMesaContainer } from '@containers/AbrirMesaContainer/AbrirMesaContainer'
+//Import hooks
+import { useGetAvailableTables } from '@hooks/useGetTables'
 
 const AbirMesa = () => {
 
-    const {tableNumber,modal} = React.useContext(AppContext);
+    const [loading,setLoading]=React.useState(true)
+    const [tables,setTables]=React.useState([])
 
-    const tables=[1,2,3,4,5,6,7];
+    React.useEffect(()=>{
+        if (!localStorage.getItem('sessionJWT')) {
+            location.href='/'
+        }else{
+            async function fetchData() {
+                const openTables=await useGetAvailableTables()
+                setTables(openTables)
+            }
+
+            fetchData()
+
+            setLoading(false)
+        }
+    },[])
+
     return (
         <>
-            {!tableNumber && tables.map(table => (<TableItem tableNumber={table} key={`TableNumber ${table}`}/>) )}
-            
-            {typeof(tableNumber)==='number' && <CategoryContainer TableNumber={tableNumber}/>}
-                          
-            <NavigationMenu activeNavItem='abrir mesa'/>
-
-            {modal && <Modal> 
-                < CoctelesLogic />
-            </Modal>}
+            {!loading && (<AbrirMesaContainer openTables={tables} />)}   
         </>
     )
 }

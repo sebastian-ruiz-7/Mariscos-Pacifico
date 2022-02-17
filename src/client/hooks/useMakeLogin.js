@@ -1,6 +1,5 @@
 import axios from "axios"
 import { API_address } from "../config"
-//const config =require ('../../backend/config.js')
 
 const useMakeLogin= async (data)=>{
     try {
