@@ -22,13 +22,14 @@ const useInitialState = () => {
     const [order,setOrder] = React.useState({});
 
     const [modal,openModal] = React.useState(false);
+    const [modalAlert,openModalAlert] = React.useState(false);
 
     const [editingOrder,setEditingOrder]=React.useState(false)
 
     const [lastCoctelSizeSelected,setLastCoctelSizeSelected]=React.useState(undefined)
 
     return{
-        toggleCategory,setToggleCategory,tableNumber,setTableNumber,order,setOrder,modal,openModal,lastCoctelSizeSelected,setLastCoctelSizeSelected,editingOrder,setEditingOrder
+        toggleCategory,setToggleCategory,tableNumber,setTableNumber,order,setOrder,modal,openModal,lastCoctelSizeSelected,setLastCoctelSizeSelected,editingOrder,setEditingOrder,modalAlert,openModalAlert
     }
 }
 

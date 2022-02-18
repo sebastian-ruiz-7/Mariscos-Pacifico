@@ -69,7 +69,7 @@ const Bebidas = ({onClick}) => {
             <ItemOrder category='bebidas' item='modeloEspecial' itemName='Modelo Especial'/>
             <ItemOrder category='bebidas' item='coronaLigth' itemName='Corona Ligth'/>
             <ItemOrder category='bebidas' item='michelada' itemName='Michelada'/>
-            <ItemOrder category='bebidas' item='refresco' itemName='Refrescos'/>
+            <ItemOrder category='bebidas' item='refrescos' itemName='Refrescos'/>
             <ItemOrder category='bebidas' item='taparosca' itemName='Taparosca, Bote, Ligth'/>
             <ItemOrder category='bebidas' item='aguaFresca' itemName='Agua Fresca'/>
             <ItemOrder category='bebidas' item='botellaAgua' itemName='Botella de agua'/>

@@ -8,14 +8,18 @@ import { useSendOrder } from '@hooks/useSendOrder';
 
 const SubmitOrderButton = () => {
 
-    const {order} = React.useContext(AppContext);
+    const {tableNumber,order} = React.useContext(AppContext);
+
+    const [error,setError]=React.useState(false)
 
     const submitOrder=async (event)=>{
         event.preventDefault()
-        if (Object.getOwnPropertyNames(order).length===1) {
-            console.log('no has ordenado nada');
+        if (Object.getOwnPropertyNames(order).length===0) {
+            setError(true)
         }else{
-            const response=await useSendOrder(order)
+            const newOrder={...order}
+            newOrder['tableNumber']=tableNumber;
+            const response=await useSendOrder(newOrder)
             if (response.status===201) {
                 location.href='/abrir-mesa'
             }
@@ -25,9 +29,15 @@ const SubmitOrderButton = () => {
 
 
     return (
-        <button className='submit-order-button' onClick={submitOrder}>
-            Enviar pedido
-        </button>
+        <>
+            {/* The styles of this className are the Same of the 'CoctelesLogic.css'*/}
+            {error && <p className='error-message'>No has ordenado nada</p>}
+
+            <button className='submit-order-button' onClick={submitOrder}>
+                Enviar pedido
+            </button>
+
+        </>
     )
 }
 

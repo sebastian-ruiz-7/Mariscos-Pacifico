@@ -8,6 +8,7 @@ import { AppContext } from '@context/AppContext'
 //Import components
 import { Modal } from '@containers/Modal/Modal'
 import { CoctelesLogic } from '@containers/CoctelesLogic/CoctelesLogic'
+import { SubmitOrderButton } from '@components/SubmitOrderButton/SubmitOrderButton';
 
 const AbrirMesaContainer = ({openTables}) => {
 
@@ -20,7 +21,13 @@ const AbrirMesaContainer = ({openTables}) => {
 
         {!tableNumber && tables.map(table => (<TableItem tableNumber={table} key={`TableNumber ${table}`}/>) )}
         
-        {tableNumber && <CategoryContainer/>}
+        {tableNumber && (
+            <>
+                <CategoryContainer/>
+                <SubmitOrderButton />
+            </>
+
+        )}
                     
         <NavigationMenu activeNavItem='abrir mesa'/>
 
@@ -28,6 +35,8 @@ const AbrirMesaContainer = ({openTables}) => {
         {modal && <Modal> 
             < CoctelesLogic />
         </Modal>}
+
+        
 
         <div className='EvitarOverflow'></div>
     </>

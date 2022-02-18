@@ -131,6 +131,9 @@ const ItemOrder = ({itemName,category,item}) => {
             if (newOrder[category][item]['total']===0) {
                 delete newOrder[category][item]
             }
+            if (Object.getOwnPropertyNames(newOrder[category]).length===0) {
+                delete newOrder[category]
+            }
         }else if (itemIsCoctel()) {
             if (newOrder[category][item]['total']===0) {
                 delete newOrder[category][item]

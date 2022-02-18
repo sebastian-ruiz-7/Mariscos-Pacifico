@@ -8,7 +8,7 @@ import { useChangeTableNumber } from '../../hooks/useChangeTableNumber';
 
 const EditNumberTableLogic = () => {
 
-    const {tableNumber,openModal} = React.useContext(AppContext);
+    const {tableNumber,openModalAlert} = React.useContext(AppContext);
 
     const [error,setError]=React.useState(false)
     const [errorText,setErrorText]=React.useState(`Se debe asignar un número antes de continuar`);
@@ -28,8 +28,8 @@ const EditNumberTableLogic = () => {
             let messageError=response.error.split(' ')
             messageError=`${messageError[0]} ${messageError[1]}`;
             if (messageError==='Duplicate entry') {
+                setError(true)
                 setErrorText('Ya existe una mesa con este número')
-                console.log('Ya existe una mesa con este número')
             }
         }
         if (response.status===200) {
@@ -44,7 +44,7 @@ const EditNumberTableLogic = () => {
         <input onChange={changeInput} className='edit-number-table-logic__input' type="text" />
 
         <div className='edit-number-table-buttons-container'>
-            <button onClick={()=>openModal(false)} className='edit-number-table-logic__button edit-number-table-logic__button--cancel'>Cancelar</button>
+            <button onClick={()=>openModalAlert(false)} className='edit-number-table-logic__button edit-number-table-logic__button--cancel'>Cancelar</button>
             <button onClick={changeTableNumber} className='edit-number-table-logic__button edit-number-table-logic__button--submit'>Cambiar número</button>
         </div>
 

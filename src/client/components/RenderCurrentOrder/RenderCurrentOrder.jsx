@@ -5,21 +5,21 @@ import { AppContext } from '@context/AppContext'
 //Import hooks
 import { useGetImageName } from '@hooks/useGetImageName';
 //Import containers
-import { Modal } from '@containers/Modal/Modal';
+import { ModalAlert } from '@containers/ModalAlert/ModalAlert';
 import { EditNumberTableLogic } from '@containers/EditNumberTableLogic/EditNumberTableLogic';
 import { CurrentOrderCategoryContainer } from '@containers/CurrentOrderCategoryContainer/CurrentOrderCategoryContainer';
 
 
 const RenderCurrentOrder = () => {
 
-    const {order,tableNumber,modal,openModal,setEditingOrder} = React.useContext(AppContext);
+    const {order,tableNumber,modalAlert,openModalAlert,setEditingOrder} = React.useContext(AppContext);
 
     const goBackToSelectTable=()=>{
         location.href='/mesas-abiertas'
     }
 
     const editTableNumber=()=>{
-        openModal(true)
+        openModalAlert('cambiarNumeroMesa')
     }
 
     const editOrder=(event)=>{
@@ -40,9 +40,9 @@ const RenderCurrentOrder = () => {
             <img onClick={editTableNumber} className='current-order-container__img' src={edit} alt="" />
         </div>
 
-        {modal && <Modal> 
+        {modalAlert==='cambiarNumeroMesa' && <ModalAlert> 
             < EditNumberTableLogic />
-        </Modal>}
+        </ModalAlert>}
 
         {/* This div is use to avoid the top overflow, the css file that has the styles of this className is in 'CategoryCard.css */}
         <div className='avoid-overflow-table'></div> 
@@ -51,7 +51,7 @@ const RenderCurrentOrder = () => {
 
         {Object.getOwnPropertyNames(order).length>0 && (
             Object.keys(order).map(key=>
-                <CurrentOrderCategoryContainer items={order[key]} Category={key} key={`Current Order ${key}`} />
+                <CurrentOrderCategoryContainer items={order[key]} category={key} key={`Current Order ${key}`} />
             )
         )}
     </>  

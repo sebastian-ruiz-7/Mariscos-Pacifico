@@ -3,7 +3,7 @@ import React from 'react'
 //Import components
 import { CategoryCard } from '@components/CategoryCard/CategoryCard'
 import { Cocteles, Tostadas, Tacos, Filetes, Bebidas, Camarones, Ordenes, Botanas, Sopas, Postres, Pescados, Pulpos} from '@containers/ItemOrderContainer/ItemOrderContainer';
-import { SubmitOrderButton } from '@components/SubmitOrderButton/SubmitOrderButton';
+
 //Import Context
 import { AppContext } from '@context/AppContext';
 //Import styles
@@ -27,18 +27,13 @@ const CategoryContainer = () => {
         location.href='/abrir-mesa'
     }
 
-    React.useEffect(()=>{
-        const newOrder={...order}
-        newOrder['tableNumber']=tableNumber;
-        setOrder(newOrder);
-    },[])
-
     return (
         <main>
 
             <div className='category-container'>
                 <img onClick={goBackToSelectTable} className='category-container__img' src={previous} alt="" />
                 <p className='category-container__p'>Toma el pedido de la mesa {tableNumber}</p>
+                <div></div>
             </div>
 
             {toggleCategory.cocteles  ? <Cocteles onClick={()=>{toggleCategoryHandler('cocteles')}}/>     : <CategoryCard description='Cocteles' imageName='coctel' onClick={()=>{toggleCategoryHandler('cocteles')}}/>}
@@ -65,7 +60,7 @@ const CategoryContainer = () => {
 
             {toggleCategory.pulpos    ? <Pulpos onClick={()=>{toggleCategoryHandler('pulpos')}}/>         : <CategoryCard description='Pulpos' imageName='pulpo' onClick={()=>{toggleCategoryHandler('pulpos')}}/>}
 
-            <SubmitOrderButton/>
+            
 
         </main>
     )

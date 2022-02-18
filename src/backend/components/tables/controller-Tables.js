@@ -1,6 +1,3 @@
-//Require internal dependencies
-const menu=require('./menu')
-
 module.exports=(store)=>{
     
     const getTable=async(id)=>{
@@ -20,8 +17,8 @@ module.exports=(store)=>{
     const payTable=async(id)=>{
         const table=await store.get('openTables',{tableNumber:id})
         let order={... table[0].order}
-        const total=getPrices(order)
-        return total
+        const bill=await getPrices(order)
+        return bill
     }
 
     const getPrices=async(order)=>{
@@ -75,8 +72,8 @@ module.exports=(store)=>{
         const prices=await Promise.all(pricesPromises) // Wait to all promises are resolved
 
         
-        //console.log(prices);
-        //console.log(products);
+        // console.log(prices);
+        // console.log(products);
 
         
 
@@ -86,14 +83,15 @@ module.exports=(store)=>{
             changePrice['price']=prices[index][0].price
         })
 
-        console.log(products);
+        //console.log(products);
         
 
         let total=0
         products.map(item=>{
             total+=item['cantidad']*item['price']
         })
-        return total;
+        return {products,total};
+        
     }
 
     const itemIsShrimp=(category,item)=>{
