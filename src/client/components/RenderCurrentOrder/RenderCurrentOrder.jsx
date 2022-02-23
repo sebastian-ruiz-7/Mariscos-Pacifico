@@ -8,7 +8,8 @@ import { useGetImageName } from '@hooks/useGetImageName';
 import { ModalAlert } from '@containers/ModalAlert/ModalAlert';
 import { EditNumberTableLogic } from '@containers/EditNumberTableLogic/EditNumberTableLogic';
 import { CurrentOrderCategoryContainer } from '@containers/CurrentOrderCategoryContainer/CurrentOrderCategoryContainer';
-
+//Import styles
+import './RenderCurrentOrder.css'
 
 const RenderCurrentOrder = () => {
 

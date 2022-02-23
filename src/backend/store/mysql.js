@@ -9,7 +9,8 @@ let dbConfig={
     user:'root',
     database:config.database.database,
     password:config.database.password,
-    port:config.database.port
+    port:config.database.port,
+    dateStrings:true
 }
 
 let connection;
@@ -41,17 +42,41 @@ const handleConnection=()=>{
 handleConnection();
 
 const get=(table,data)=>{
+    if (!data) {
+        return new Promise((resolve,reject)=>{
+            connection.query(`SELECT * FROM ${table}`,(err,result)=>{
+                if (err) {
+                    return reject(err)
+                }else{
+                    return resolve(result)
+                }
+            })
+        })    
+    }else{
+        return new Promise((resolve,reject)=>{
+            connection.query(`SELECT * FROM ${table} WHERE ?`,data,(err,result)=>{
+                if (err) {
+                    return reject(err)
+                }else{
+                    return resolve(result)
+                }
+            })
+        })
+    }
+}
+
+const getSale=(tableNumber,fecha)=>{
     return new Promise((resolve,reject)=>{
-        connection.query(`SELECT * FROM ${table} WHERE ?`,data,(err,result)=>{
+        connection.query(`SELECT * FROM sales WHERE tableNumber='${tableNumber}' AND fecha='${fecha}'`,(err,result)=>{
             if (err) {
-                return reject(err)
+                reject(err);
             }else{
-                return resolve(result)
+                resolve(result);
             }
         })
-
     })
 }
+
 
 const getOpenTables=()=>{
     return new Promise((resolve,reject)=>{
@@ -126,9 +151,21 @@ const remove=(Table,data)=>{
     })
 };
 
+const removeFromLastSaleInserted=(tableNumber,fecha)=>{
+    return new Promise((resolve,reject)=>{
+        connection.query(`DELETE FROM lastSaleInserted WHERE tableNumber='${tableNumber}' AND fecha='${fecha}'`,(err,result)=>{
+            if (err) {
+                reject(err);
+            }else{
+                resolve(result);
+            }
+        })
+    })
+};
+
 const getPrice=(category,item)=>{
     return new Promise((resolve,reject)=>{
-        connection.query(`SELECT price FROM products WHERE category='${category}' AND item='${item}'`,(err,result)=>{
+        connection.query(`SELECT price, name FROM products WHERE category='${category}' AND item='${item}'`,(err,result)=>{
             if (err) {
                 reject(err);
             } else{
@@ -141,10 +178,12 @@ const getPrice=(category,item)=>{
 module.exports={
     get,
     getOpenTables,
+    getSale,
     add,
     update,
     updateTable,
     updateTableNumber,
     remove,
+    removeFromLastSaleInserted,
     getPrice
 }

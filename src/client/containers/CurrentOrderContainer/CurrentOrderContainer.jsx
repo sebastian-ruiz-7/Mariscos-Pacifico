@@ -14,6 +14,7 @@ import { Modal } from '@containers/Modal/Modal'
 import { CoctelesLogic } from '@containers/CoctelesLogic/CoctelesLogic'
 import { ModalAlert } from '@containers/ModalAlert/ModalAlert';
 import { MakeBillAlert } from '@containers/MakeBillAlert/MakeBillAlert';
+import { EmptyOrderAlert } from '@containers/EmptyOrderAlert/EmptyOrderAlert';
 
 const CurrentOrderContainer = () => {
     
@@ -25,10 +26,15 @@ const CurrentOrderContainer = () => {
       event.preventDefault()
       let currentOrderInDataBase=await useGetOrderFromTable(tableNumber)
       let compareOrder={...order}
+      if (Object.getOwnPropertyNames(compareOrder).length===0) {
+        openModalAlert('emptyOrder')
+        return
+      }
       currentOrderInDataBase=JSON.stringify(currentOrderInDataBase)
       compareOrder=JSON.stringify(compareOrder)
       if (currentOrderInDataBase==compareOrder) {
-        setError(true)
+        setError('No se ha actualizado la orden')
+        return
       }
 
       const response=await useUpdateOrder(tableNumber,order)
@@ -71,7 +77,7 @@ const CurrentOrderContainer = () => {
             <>
               <CategoryContainer />
               {/* The styles of the className 'error-message' are the Same of the 'CoctelesLogic.css'*/}
-              {error && <p className='error-message'>No se ha actualizado la orden</p>}
+              {error && <p className='error-message'>{error}</p>}
               {/* The styles of the className 'submit-order-button' are the same of the 'SubmitOrderButton' */}
               <button onClick={updateOrder} className='submit-order-button'>Actualizar orden</button>
             </>
@@ -86,7 +92,9 @@ const CurrentOrderContainer = () => {
             < MakeBillAlert />
         </ModalAlert>}
 
-        <div className='EvitarOverflow'></div> 
+        {modalAlert==='emptyOrder' && <ModalAlert> 
+            < EmptyOrderAlert />
+        </ModalAlert>}
     </>
   )
 }

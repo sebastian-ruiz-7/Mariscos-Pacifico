@@ -32,7 +32,7 @@ const CategoryContainer = () => {
 
             <div className='category-container'>
                 <img onClick={goBackToSelectTable} className='category-container__img' src={previous} alt="" />
-                <p className='category-container__p'>Toma el pedido de la mesa {tableNumber}</p>
+                <p className='category-container__p'>Pedido de la mesa {tableNumber}</p>
                 <div></div>
             </div>
 

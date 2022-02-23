@@ -8,7 +8,7 @@ import { LoginForm } from '../components/LoginForm/LoginForm'
 const Pruebas = () => {
     return (
         <>
-            <LoginForm />
+            <h1>Hola son las pruebas</h1>
         </>
     )
 }

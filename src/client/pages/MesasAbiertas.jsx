@@ -14,11 +14,15 @@ const MesasAbiertas = () => {
     const [openTables,setOpenTables]=React.useState([])
 
     React.useEffect(()=>{
-        const fetchData=async()=>{
-            const openTables=await useGetOpenTables()
-            setOpenTables(openTables);
+        if (!localStorage.getItem('sessionJWT')) {
+            location.href='/'
+        }else{
+            const fetchData=async()=>{
+                const openTables=await useGetOpenTables()
+                setOpenTables(openTables);
+            }
+            fetchData()
         }
-        fetchData()
     },[])
 
     return (
@@ -28,6 +32,8 @@ const MesasAbiertas = () => {
             {tableNumber && <CurrentOrderContainer/>}
 
             <NavigationMenu activeNavItem='mesas abiertas'/>
+
+            <div className='EvitarOverflow'></div>
         </>
     )
 }

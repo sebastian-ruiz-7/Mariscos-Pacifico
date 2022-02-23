@@ -1,4 +1,4 @@
-.make-bill-alert-container{
+.empty-order-alert-container{
     display: flex;
     flex-direction: column;
     width: 330px;
@@ -6,13 +6,13 @@
     border-radius: 8px;
 }
 
-.make-bill-alert__p{
+.empty-order-alert__p{
     font-size: var(--lg);
     text-align: center;
     margin-bottom: 10px;
 }
 
-.make-bill-alert__input{
+.empty-order-alert__input{
     width: 300px;
     height: 32px;
     padding: 8px;
@@ -24,13 +24,13 @@
     text-align: center;
 }
 
-.make-bill-alerts-container{
+.empty-order-alerts-container{
     margin: 20px 0;
     display: flex;
     justify-content: space-around;
 }
 
-.make-bill-alert__button{
+.empty-order-alert__button{
     width: 90px;
     height: 48px;
     cursor: pointer;
@@ -40,17 +40,17 @@
     font-size: var(--md);
 }
 
-.make-bill-alert__button--cancel{
+.empty-order-alert__button--cancel{
     background: transparent;
     color: red;
 }
 
-.make-bill-alert__button--submit{
+.empty-order-alert__button--submit{
     background-color: var(--hospital-green);
     color: var(--white);
 }
 
-.make-bill-alert__p--error{
+.empty-order-alert__p--error{
     color: red;
     border: 0;
     margin: 0;

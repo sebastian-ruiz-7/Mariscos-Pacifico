@@ -9,6 +9,8 @@ import { Pendientes } from '@pages/Pendientes'
 import { MesasAbiertas } from '@pages/MesasAbiertas'
 import { Ajustes } from '@pages/Ajustes'
 import { AbirMesa } from '@pages/AbrirMesa'
+import { BillTickerMaker } from '@containers/BillTickerMaker/BillTickerMaker'
+import { NotFound } from '@pages/NotFound'
 //Import Context
 import { AppContext } from '@context/AppContext'
 //Import Hooks
@@ -29,7 +31,9 @@ const App = () => {
                     <Route exact path='/pendientes' element= {<Pendientes />}/>
                     <Route exact path='/mesas-abiertas' element= {<MesasAbiertas />}/>
                     <Route exact path='/ajustes' element= {<Ajustes />}/>
+                    <Route exact path='/ticket' element= {<BillTickerMaker />}/>
                     <Route exact path='/pruebas' element= {<Pruebas />}/>
+                    <Route path='*' element= {<NotFound />}/>
                 </Routes>
             </BrowserRouter>
         </AppContext.Provider>

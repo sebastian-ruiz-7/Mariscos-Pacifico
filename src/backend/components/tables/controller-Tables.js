@@ -1,7 +1,11 @@
+//Require dependencies
+const sales=require('../sales/index-Sales')
+
 module.exports=(store)=>{
     
     const getTable=async(id)=>{
         const table=await store.get('openTables',{tableNumber:id})
+        //console.log(table[0].fecha)
         return table
     }
 
@@ -18,7 +22,22 @@ module.exports=(store)=>{
         const table=await store.get('openTables',{tableNumber:id})
         let order={... table[0].order}
         const bill=await getPrices(order)
-        return bill
+        const bodySale={
+            tableNumber:id,
+            products:JSON.stringify(bill.products),
+            fecha:table[0].fecha,
+            mesero:table[0].mesero,
+            total:bill.total
+        }
+        const parallelPromises=[]
+        let lastSaleInserted=await store.get('lastSaleInserted')
+        lastSaleInserted=lastSaleInserted[0]
+        parallelPromises.push(sales.addSale(bodySale))
+        parallelPromises.push(store.remove('openTables',{tableNumber:id}))
+        parallelPromises.push(store.removeFromLastSaleInserted(lastSaleInserted.tableNumber,lastSaleInserted.fecha))
+        parallelPromises.push(store.add('lastSaleInserted',{tableNumber:bodySale.tableNumber,fecha:bodySale.fecha}))
+        const parallelPromisesResult=await Promise.all(parallelPromises)
+        return 'Procedimiento correcto'
     }
 
     const getPrices=async(order)=>{
@@ -43,14 +62,16 @@ module.exports=(store)=>{
                     index++
                 }else if (itemIsShrimp(category,j)) {
                     if (itemsList[1][j]['cabeza']) {
-                        item={category:category,item:`${j} cabeza`,cantidad:itemsList[1][j]['cabeza'],price:index}
+                        item={category:category,item:j,cantidad:itemsList[1][j]['cabeza'],price:index}
+                        //item={category:category,item:`${j} cabeza`,cantidad:itemsList[1][j]['cabeza'],price:index}
                         let price=store.getPrice(category,'cabeza')
                         pricesPromises.push(price)
                         products.push(item) 
                         index++
                     }
                     if (itemsList[1][j]['pelados']) {
-                        item={category:category,item:`${j} pelados`,cantidad:itemsList[1][j]['pelados'],price:index}
+                        item={category:category,item:j,cantidad:itemsList[1][j]['pelados'],price:index}
+                        //item={category:category,item:`${j} pelados`,cantidad:itemsList[1][j]['pelados'],price:index}
                         let price=store.getPrice(category,'pelados')
                         pricesPromises.push(price)
                         products.push(item) 
@@ -75,12 +96,22 @@ module.exports=(store)=>{
         // console.log(prices);
         // console.log(products);
 
-        
 
         //Now, I can change the index of the promises for the value of the item
-        products.map(changePrice=>{
-            let index=changePrice['price'];
-            changePrice['price']=prices[index][0].price
+        products.map(changePriceAndName=>{
+            let index=changePriceAndName['price'];
+            changePriceAndName['price']=prices[index][0].price
+            if (itemIsShrimp(changePriceAndName.category,changePriceAndName.item)) {
+                let kindOfShrimp=prices[index][0].name
+                kindOfShrimp=kindOfShrimp.split(' ')
+                const itemName=returnItemShrimpCorrectName(changePriceAndName.item)
+                kindOfShrimp.splice(1,0,itemName)
+                kindOfShrimp=kindOfShrimp.join(' ')
+                changePriceAndName['name']=kindOfShrimp
+            }else{
+                changePriceAndName['name']=prices[index][0].name
+            }
+            changePriceAndName['total']=changePriceAndName.cantidad*changePriceAndName.price
         })
 
         //console.log(products);
@@ -92,6 +123,19 @@ module.exports=(store)=>{
         })
         return {products,total};
         
+    }
+
+    const returnItemShrimpCorrectName=(itemName)=>{
+
+        const list={
+            diabla:'Diabla',
+            mojoDeAjo:'Mojo de Ajo',
+            mantequilla:'Mantequilla',
+            ajillo:'Ajillo',
+            natural:'Natural'
+        }
+
+        return list[itemName]
     }
 
     const itemIsShrimp=(category,item)=>{

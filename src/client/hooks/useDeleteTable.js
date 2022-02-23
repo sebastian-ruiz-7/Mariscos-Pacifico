@@ -1,15 +1,15 @@
 import { API_address } from "../config"
 import { useGetToken } from '@hooks/useGetToken'
 
-const useMakeBill =async (tableNumber) => {
+const useDeleteTable = async (tableNumber) => {
     const token=useGetToken()
 
-    let response=await fetch(`${API_address}tables/pay/${tableNumber}`,{
+    let response=await fetch(`${API_address}tables/${tableNumber}`,{
+        method:'DELETE',
         headers:{Authorization:token}
     })
     response=await response.json();
-    //const bill=response.body
     return response
 }
 
-export {useMakeBill}
+export {useDeleteTable}

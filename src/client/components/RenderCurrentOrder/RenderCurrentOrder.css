@@ -1,14 +1,13 @@
-.submit-order-button{
+.edit-order-button{
     width: 100%;
     height: 50px;
-    max-width: 330px;
-    margin: 0 auto;
     font-size: var(--md);
     font-weight: bold;
-    background-color: #ACD9B2;
-    color: var(--white);
+    background-color: #ebebeb;
+    color: var(--black);
     border: none;
     border-radius: 8px;
-    margin-bottom: 10px;
     display: block;
+    width: 330px;
+    margin: 0 auto;
 }
