@@ -4,8 +4,12 @@ import React from 'react'
 import { AppContext } from '@context/AppContext'
 //Import hooks
 import { useGetSale } from '@hooks/useGetSale'
+//Import styles
+import './BillTickerMaker.css'
 
 const BillTickerMaker = (order) => {
+
+  const [ticket,setTicket] = React.useState(false)
 
   React.useEffect(()=>{
       if (!localStorage.getItem('sessionJWT')) {
@@ -13,7 +17,10 @@ const BillTickerMaker = (order) => {
     }else{
         const fetchData=async()=>{
             const sale=await useGetSale()
-            console.log(sale)
+            if (sale.status===200) {
+              setTicket(sale.body)
+            }
+            console.log(sale.body)
         }
         fetchData()
     }  
@@ -23,7 +30,39 @@ const BillTickerMaker = (order) => {
     // order.products.map(item=>{
         
     // })    
-    <h1>Hola este es el tickect</h1>
+    <div className='ticket-container'>
+      <p className='name-restaurant'>Mariscos Pacífico</p>
+      <p>Av Enrique Díaz de León Sur 305 Sur, Col Americana, Americana, 
+        <br /> C.P: 44160 Guadalajara, Jal.</p>
+      <hr />
+
+      {ticket && (
+        <>
+          <div className='ticket-products-container'>
+            <p>Cant.</p> <p>Artículo</p> <p>Precio</p> <p>Total</p>
+
+            {ticket.products.map(product=>
+              <>
+                <p key={`Cantidad ${product.category}-${product.item}`}>{product.cantidad} </p>
+                <p className='ticket-item-name' key={`nombre ${product.category}-${product.item}`}>{product.name} </p>
+                <p key={`precio ${product.category}-${product.item}`}>{product.price} </p>
+                <p key={`total ${product.category}-${product.item}`}>{product.total.toFixed(2)}</p>
+              </>
+              
+              )}
+            <p></p>
+            <p>Total:</p>
+            <p>{ticket.total}</p>
+          </div>
+          
+          <hr />
+
+          <p>Fecha {ticket.fecha.substring(0,10)}</p>
+          <p>Hora {ticket.fecha.substring(10)}</p>
+        </>
+      )}
+      <p className='name-restaurant'>Gracias por su preferencia</p>
+    </div>
   )
 }
 

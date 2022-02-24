@@ -1,0 +1,22 @@
+.name-restaurant{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.ticket-container{
+    font-size: 10px;
+    width: 5.8cm;
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+}
+
+.ticket-products-container{
+    display: grid;
+    font-weight: 300;
+    grid-template-columns: 0.5cm 3.1cm 1.1cm 1.1cm;
+    grid-auto-rows: 0.9cm;
+}
+
+.ticket-item-name{
+    text-align: left;
+}

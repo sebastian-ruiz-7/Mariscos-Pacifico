@@ -8,7 +8,10 @@ import { NavigationMenu } from '@containers/NavigationMenu/NavigationMenu'
 const Ajustes = () => {
     return (
         <>
-            <CategoryContainer />  
+            <button onClick={()=>{
+                localStorage.removeItem('sessionJWT')
+                location.href='/'
+                }}>Cerrar Sesión</button>
             
             <NavigationMenu activeNavItem='ajustes'/>
         </>
