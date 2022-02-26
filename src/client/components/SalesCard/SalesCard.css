@@ -1,0 +1,34 @@
+.sale-card-container{
+    width: 330px;
+    height: 70px;
+    margin: 10px auto;
+    border-radius: 8px;
+    border: 2px solid var(--orange);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.sale-date{
+    font-size: 1.2rem;
+    /* text-align: left; */
+}
+
+.sale-tableNumber{
+    text-align: center;
+}
+
+.see-ticket-button{
+    height: 40px;
+    width: 80px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    background-color: #ACD9B2;
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    padding: 0 8px;
+}

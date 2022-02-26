@@ -13,6 +13,11 @@ import bebidas from '@assets/bebidas.png';
 import botanas from '@assets/botanas.png';
 import previous from '@assets/previous.png';
 import setting from '@assets/setting.png';
+import refund from '@assets/refund.png';
+import correct from '@assets/correct.png';
+import negative from '@assets/negative.png';
+import plus from '@assets/plus.png';
+import cancel from '@assets/cancel.png';
 
 
 const useGetImageName=(imageName)=>{
@@ -31,7 +36,12 @@ const useGetImageName=(imageName)=>{
         bebidas:()=>bebidas,
         botanas:()=>botanas,
         setting:()=>setting,
-        previous:()=>previous
+        previous:()=>previous,
+        refund:()=>refund,
+        correct:()=>correct,
+        negative:()=>negative,
+        plus:()=>plus,
+        cancel:()=>cancel
     }
 
     return assets[imageName]()

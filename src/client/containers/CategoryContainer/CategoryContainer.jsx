@@ -3,18 +3,17 @@ import React from 'react'
 //Import components
 import { CategoryCard } from '@components/CategoryCard/CategoryCard'
 import { Cocteles, Tostadas, Tacos, Filetes, Bebidas, Camarones, Ordenes, Botanas, Sopas, Postres, Pescados, Pulpos} from '@containers/ItemOrderContainer/ItemOrderContainer';
-
+//Import hooks
+import { useGetImageName } from '@hooks/useGetImageName';
 //Import Context
 import { AppContext } from '@context/AppContext';
 //Import styles
 import '@containers/CategoryContainer/CategoryContainer.css'
-//Import hooks
-import { useGetImageName } from '@hooks/useGetImageName';
 
 
 const CategoryContainer = () => {
 
-    const {tableNumber,order,setOrder,toggleCategory,setToggleCategory}=React.useContext(AppContext);
+    const {tableNumber,toggleCategory,setToggleCategory}=React.useContext(AppContext);
 
     const previous=useGetImageName('previous');
     

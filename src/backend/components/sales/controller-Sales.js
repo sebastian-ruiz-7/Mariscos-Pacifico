@@ -6,6 +6,25 @@ module.exports=(store)=>{
         return lastSale
     }
 
+    const getSalesOfToday=async()=>{
+        const today=formatDate()
+        // const today='2022-02-24'
+        const endToday=`${today} 23:59:59`
+        const sales=await store.getSales(today,endToday);
+        return sales
+    }
+
+    const formatDate=()=>{
+        let today=new Date().toLocaleDateString()
+        today=today.split('/')
+        const month=today[0]
+        today[0]=today[1]
+        today[1]=month
+        today=today.reverse()
+        today=today.join('-')
+        return today
+    }
+
     // const getSales=async(untilDate,sinceDate)=>{
     //     const tables=await store.getSales(untilDate,sinceDate)
     //     const arrayTables=[]
@@ -22,6 +41,7 @@ module.exports=(store)=>{
 
     return{
         getLastSale,
+        getSalesOfToday,
         addSale
     }
 }

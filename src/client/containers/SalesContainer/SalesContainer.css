@@ -1,0 +1,23 @@
+.avoid-overflow-sales{
+    margin-top: 100px;
+}
+
+.sales-legend-container{
+    width: 330px;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    position: fixed;
+    left: calc(50% - 165px);
+    top: 48px;
+}
+
+.sales-legend__text{
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.empty-space-for-button-below{
+    width: 80px;
+}

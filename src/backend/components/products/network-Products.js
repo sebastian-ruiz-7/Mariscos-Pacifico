@@ -3,25 +3,27 @@ const express=require('express');
 const router=express.Router();
 //Require internal dependencies
 const response=require('../../response');
-const controller=require('./index-Sales');
+const controller=require('./index-Products');
 const secure=require('../../auth/secure');
 
 
 //ROUTES
-router.get('/last',secure('decodeToken'),getLastSale)    //get the last sale
-router.get('/today',secure('decodeToken'),getSalesOfToday) //Get the sales of today
+router.get('/:category',secure('decodeToken'),getCategoryPrices)    //get a specific Table
 
-function getLastSale(req,res,next) {
-    controller.getLastSale()
+
+router.put('/',secure('decodeToken'),updatePriceProduct)
+
+function getCategoryPrices(req,res,next) {
+    controller.getCategoryPrices(req.params.category)
         .then(message=>response.succes(req,res,message,200))
         .catch(next)
 }
 
-
-function getSalesOfToday(req,res,next) {
-    controller.getSalesOfToday()
+function updatePriceProduct(req,res,next) {
+    controller.updatePriceProduct(req.body)
         .then(message=>response.succes(req,res,message,200))
         .catch(next)
 }
+
 
 module.exports=router

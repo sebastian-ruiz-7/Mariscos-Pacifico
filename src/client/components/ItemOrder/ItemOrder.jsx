@@ -2,7 +2,8 @@
 import React from 'react'
 //Import styles
 import '@components/ItemOrder/ItemOrder.css'
-//Import assets
+//Import hooks
+import { useGetImageName } from '@hooks/useGetImageName';
 import negative from '@assets/negative.png';
 import plus from '@assets/plus.png';
 //Import Context
@@ -183,9 +184,9 @@ const ItemOrder = ({itemName,category,item}) => {
                 <p className='item-order__name'>{itemName}</p>
 
                 <div className='order-handler'>
-                    <img className='order-handler__icon' onClick={removeElement} src={negative} alt="" />
+                    <img className='order-handler__icon' onClick={removeElement} src={useGetImageName('negative')} alt="" />
                     <p className='order-handler__p'>{count}</p>
-                    <img className='order-handler__icon' onClick={addElement} src={plus} alt="" />
+                    <img className='order-handler__icon' onClick={addElement} src={useGetImageName('plus')} alt="" />
 
                 </div>
             </div>

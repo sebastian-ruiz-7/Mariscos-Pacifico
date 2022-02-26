@@ -1,0 +1,12 @@
+.change-price-list{
+    width: 330px;
+    height: 50px;
+    margin: 60px auto;
+    background-color: white;
+    border: solid 2px var(--orange);
+    border-radius: 8px;
+    display: block;
+    padding: 8px;
+    font-size: 1.6rem;
+    /* font-weight: bold; */
+}

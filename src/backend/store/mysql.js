@@ -1,4 +1,5 @@
 //Require dependencies
+const { reject } = require('bcrypt/promises');
 const mysql=require('mysql2')
 //Require internal dependencies
 const config=require('../config')
@@ -68,6 +69,19 @@ const get=(table,data)=>{
 const getSale=(tableNumber,fecha)=>{
     return new Promise((resolve,reject)=>{
         connection.query(`SELECT * FROM sales WHERE tableNumber='${tableNumber}' AND fecha='${fecha}'`,(err,result)=>{
+            if (err) {
+                reject(err);
+            }else{
+                resolve(result);
+            }
+        })
+    })
+}
+
+
+const getSales=(sinceDate,untilDate)=>{
+    return new Promise((resolve,reject)=>{
+        connection.query(`SELECT id_sales,tableNumber,fecha,mesero,total FROM sales WHERE fecha BETWEEN '${sinceDate}' AND '${untilDate}'`,(err,result)=>{
             if (err) {
                 reject(err);
             }else{
@@ -179,6 +193,7 @@ module.exports={
     get,
     getOpenTables,
     getSale,
+    getSales,
     add,
     update,
     updateTable,

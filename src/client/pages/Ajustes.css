@@ -1,0 +1,12 @@
+.settings-button{
+    margin: 70px auto;
+    width: 330px;
+    border: 2px solid var(--orange);
+    height: 70px;
+    background-color: white;
+    border-radius: 8px;
+    font-size: var(--md);
+    font-weight: bold;
+    text-align: center;
+    display: block;
+}

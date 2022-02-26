@@ -6,6 +6,7 @@ const config=require('./config');
 const user=require('./components/user/network-User')
 const tables=require('./components/tables/network-Tables');
 const sales=require('./components/sales/network-Sales')
+const products=require('./components/products/network-Products')
 const auth=require('./auth/network')
 
 //Require err middleware
@@ -20,6 +21,7 @@ app.use('/user',user)
 app.use('/login',auth)
 app.use('/tables',tables)
 app.use('/sales',sales)
+app.use('/products',products)
 //Error handling by middleware
 app.use(error);
 

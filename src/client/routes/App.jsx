@@ -10,6 +10,8 @@ import { MesasAbiertas } from '@pages/MesasAbiertas'
 import { Ajustes } from '@pages/Ajustes'
 import { AbirMesa } from '@pages/AbrirMesa'
 import { BillTickerMaker } from '@containers/BillTickerMaker/BillTickerMaker'
+import { ChangePrice } from '../pages/ChangePrice'
+import { Sales } from '../pages/Sales'
 import { NotFound } from '@pages/NotFound'
 //Import Context
 import { AppContext } from '@context/AppContext'
@@ -33,6 +35,8 @@ const App = () => {
                     <Route exact path='/ajustes' element= {<Ajustes />}/>
                     <Route exact path='/ticket' element= {<BillTickerMaker />}/>
                     <Route exact path='/pruebas' element= {<Pruebas />}/>
+                    <Route exact path='/cambiar-precios' element= {<ChangePrice />}/>
+                    <Route exact path='/sales' element= {<Sales />}/>
                     <Route path='*' element= {<NotFound />}/>
                 </Routes>
             </BrowserRouter>
