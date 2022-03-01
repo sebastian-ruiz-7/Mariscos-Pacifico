@@ -8,6 +8,8 @@
     width: 5.8cm;
     font-family: 'Roboto Mono', monospace;
     text-align: center;
+    background-color: white;
+    overflow: auto;
 }
 
 .ticket-products-container{
@@ -19,4 +21,5 @@
 
 .ticket-item-name{
     text-align: left;
+    /* line-height: 20px; */
 }

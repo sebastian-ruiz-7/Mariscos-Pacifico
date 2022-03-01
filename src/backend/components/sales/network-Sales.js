@@ -10,6 +10,7 @@ const secure=require('../../auth/secure');
 //ROUTES
 router.get('/last',secure('decodeToken'),getLastSale)    //get the last sale
 router.get('/today',secure('decodeToken'),getSalesOfToday) //Get the sales of today
+router.get('/get/:id',secure('decodeToken'),getSale) //Get a specific sale
 
 function getLastSale(req,res,next) {
     controller.getLastSale()
@@ -20,6 +21,12 @@ function getLastSale(req,res,next) {
 
 function getSalesOfToday(req,res,next) {
     controller.getSalesOfToday()
+        .then(message=>response.succes(req,res,message,200))
+        .catch(next)
+}
+
+function getSale(req,res,next) {
+    controller.getSale(req.params.id)
         .then(message=>response.succes(req,res,message,200))
         .catch(next)
 }

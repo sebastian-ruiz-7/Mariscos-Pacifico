@@ -81,7 +81,7 @@ const getSale=(tableNumber,fecha)=>{
 
 const getSales=(sinceDate,untilDate)=>{
     return new Promise((resolve,reject)=>{
-        connection.query(`SELECT id_sales,tableNumber,fecha,mesero,total FROM sales WHERE fecha BETWEEN '${sinceDate}' AND '${untilDate}'`,(err,result)=>{
+        connection.query(`SELECT id,tableNumber,fecha,mesero,total FROM sales WHERE fecha BETWEEN '${sinceDate}' AND '${untilDate}'`,(err,result)=>{
             if (err) {
                 reject(err);
             }else{

@@ -20,8 +20,13 @@ module.exports=(store)=>{
 
     const payTable=async(id)=>{
         const table=await store.get('openTables',{tableNumber:id})
+        
         let order={... table[0].order}
+        //console.log(order)
         const bill=await getPrices(order)
+
+        
+
         const bodySale={
             tableNumber:id,
             products:JSON.stringify(bill.products),
@@ -55,11 +60,26 @@ module.exports=(store)=>{
             for(const j in itemsList[1]){
                 let item
                 if (itemIsCoctel(category)) {
-                    item={category:category,item:j,cantidad:itemsList[1][j]['total'],price:index} //This line make the data structure that I want
-                    let price=store.getPrice(category,j) //This line makes the query to the db to get the price [This is a promise]
-                    pricesPromises.push(price) //I'll separate all the promises in this array in order to make this endpoint parallel rather than sequential
-                    products.push(item) 
-                    index++
+                    const numberOfCoctelsWithOnlyOctopus=coctelHasOnlyOctopus(itemsList[1][j].coctelesSequence)
+                    if (numberOfCoctelsWithOnlyOctopus>0) {
+                        item={category:category,item:j,cantidad:itemsList[1][j]['total']-numberOfCoctelsWithOnlyOctopus,price:index} //This line make the data structure that I want
+                        let price=store.getPrice(category,j) //This line makes the query to the db to get the price [This is a promise]
+                        pricesPromises.push(price) //I'll separate all the promises in this array in order to make this endpoint parallel rather than sequential
+                        products.push(item) 
+                        index++
+
+                        item={category:category,item:j,cantidad:numberOfCoctelsWithOnlyOctopus,price:index,onlyOctopus:true} //This line make the data structure that I want
+                        price=store.getPrice(category,j) //This line makes the query to the db to get the price [This is a promise]
+                        pricesPromises.push(price) //I'll separate all the promises in this array in order to make this endpoint parallel rather than sequential
+                        products.push(item) 
+                        index++
+                    }else{
+                        item={category:category,item:j,cantidad:itemsList[1][j]['total'],price:index} //This line make the data structure that I want
+                        let price=store.getPrice(category,j) //This line makes the query to the db to get the price [This is a promise]
+                        pricesPromises.push(price) //I'll separate all the promises in this array in order to make this endpoint parallel rather than sequential
+                        products.push(item) 
+                        index++
+                    }
                 }else if (itemIsShrimp(category,j)) {
                     if (itemsList[1][j]['cabeza']) {
                         item={category:category,item:j,cantidad:itemsList[1][j]['cabeza'],price:index}
@@ -88,20 +108,24 @@ module.exports=(store)=>{
                 //That's why I just store the index of the pricePromise 
             }
         }
+        pricesPromises.push(store.getPrice('cocteles','pulpoExtra'))
 
-        
         const prices=await Promise.all(pricesPromises) // Wait to all promises are resolved
 
         
-        // console.log(prices);
-        // console.log(products);
+        //console.log(prices);
+        //console.log(products);
 
 
         //Now, I can change the index of the promises for the value of the item
         products.map(changePriceAndName=>{
             let index=changePriceAndName['price'];
             changePriceAndName['price']=prices[index][0].price
-            if (itemIsShrimp(changePriceAndName.category,changePriceAndName.item)) {
+            if (changePriceAndName.onlyOctopus) {
+                changePriceAndName['name']=prices[index][0].name
+                changePriceAndName['price']=(parseInt(changePriceAndName['price']) + parseInt(prices[prices.length-1][0].price)).toFixed(2)
+                changePriceAndName['name']=`${changePriceAndName['name']} ${prices[prices.length-1][0].name}`
+            }else if (itemIsShrimp(changePriceAndName.category,changePriceAndName.item)) {
                 let kindOfShrimp=prices[index][0].name
                 kindOfShrimp=kindOfShrimp.split(' ')
                 const itemName=returnItemShrimpCorrectName(changePriceAndName.item)
@@ -111,6 +135,7 @@ module.exports=(store)=>{
             }else{
                 changePriceAndName['name']=prices[index][0].name
             }
+            //console.log(changePriceAndName)
             changePriceAndName['total']=changePriceAndName.cantidad*changePriceAndName.price
         })
 
@@ -119,7 +144,7 @@ module.exports=(store)=>{
 
         let total=0
         products.map(item=>{
-            total+=item['cantidad']*item['price']
+            total+=item['total']
         })
         return {products,total};
         
@@ -136,6 +161,18 @@ module.exports=(store)=>{
         }
 
         return list[itemName]
+    }
+
+    const coctelHasOnlyOctopus=(coctelesSequence)=>{
+        //return coctelesSequence
+        return coctelesSequence.reduce((totalCoctelsOnlyWithOctopus,item)=>{
+            // console.log(totalCoctelsOnlyWithOctopus)
+            // console.log(item.deQue)
+            if (item.deQue.length===1 && item.deQue[0]==='pulpo') {
+                return totalCoctelsOnlyWithOctopus +1
+            }
+            return totalCoctelsOnlyWithOctopus
+        },0)
     }
 
     const itemIsShrimp=(category,item)=>{

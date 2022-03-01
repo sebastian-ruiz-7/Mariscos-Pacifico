@@ -6,6 +6,11 @@ module.exports=(store)=>{
         return lastSale
     }
 
+    const getSale=async(id)=>{
+        const response=await store.get('sales',{id})
+        return response
+    }
+
     const getSalesOfToday=async()=>{
         const today=formatDate()
         // const today='2022-02-24'
@@ -41,6 +46,7 @@ module.exports=(store)=>{
 
     return{
         getLastSale,
+        getSale,
         getSalesOfToday,
         addSale
     }

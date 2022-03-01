@@ -7,7 +7,7 @@ import { useGetSale } from '@hooks/useGetSale'
 //Import styles
 import './BillTickerMaker.css'
 
-const BillTickerMaker = (order) => {
+const BillTickerMaker = ({id}) => {
 
   const [ticket,setTicket] = React.useState(false)
 
@@ -16,11 +16,11 @@ const BillTickerMaker = (order) => {
         location.href='/'
     }else{
         const fetchData=async()=>{
-            const sale=await useGetSale()
+            const sale=await useGetSale(id)
+            console.log(sale)
             if (sale.status===200) {
               setTicket(sale.body)
             }
-            console.log(sale.body)
         }
         fetchData()
     }  
