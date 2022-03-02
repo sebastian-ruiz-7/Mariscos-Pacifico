@@ -7,8 +7,9 @@ const controller=require('./index-Tables');
 const secure=require('../../auth/secure');
 
 //ROUTES
-router.get('/:id',secure('decodeToken'),getTable)    //get a specific Table
+router.get('/get/:id',secure('decodeToken'),getTable)    //get a specific Table
 router.get('/',secure('decodeToken'),getOpenTables)    //get the open Tables
+router.get('/pendings/',secure('decodeToken'),getPendings)
 router.get('/pay/:id',secure('decodeToken'),payTable)    //pay a Table
 
 router.post('/',secure('decodeToken'),addTable)    //This method will open a table
@@ -26,6 +27,12 @@ function getTable(req,res,next) {
 
 function getOpenTables(req,res,next) {
     controller.getOpenTables()
+        .then(message=>response.succes(req,res,message,200))
+        .catch(next)
+}
+
+function getPendings(req,res,next) {
+    controller.getPendings()
         .then(message=>response.succes(req,res,message,200))
         .catch(next)
 }

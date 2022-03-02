@@ -1,0 +1,13 @@
+.pending-table-container{
+    width: 330px;
+    border: 2px solid var(--orange);
+    margin: 10px auto;
+    border-radius: 8px;
+}
+
+
+.pending-table__tableNumber{
+    background-color: var(--orange);
+    text-align: center;
+    margin: 0;
+}

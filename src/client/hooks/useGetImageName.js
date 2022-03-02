@@ -19,6 +19,7 @@ import negative from '@assets/negative.png';
 import plus from '@assets/plus.png';
 import cancel from '@assets/cancel.png';
 import others from '@assets/others.png';
+import delivered from '@assets/delivered.png';
 
 
 const useGetImageName=(imageName)=>{
@@ -43,7 +44,8 @@ const useGetImageName=(imageName)=>{
         negative:()=>negative,
         plus:()=>plus,
         cancel:()=>cancel,
-        others:()=>others
+        others:()=>others,
+        delivered:()=>delivered
     }
 
     return assets[imageName]()

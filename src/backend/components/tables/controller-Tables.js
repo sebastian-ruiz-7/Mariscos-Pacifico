@@ -18,6 +18,11 @@ module.exports=(store)=>{
         return arrayTables
     }
 
+    const getPendings=async()=>{
+        const pendings=await store.get('openTables')
+        return pendings
+    }
+
     const payTable=async(id)=>{
         const table=await store.get('openTables',{tableNumber:id})
         
@@ -266,6 +271,7 @@ module.exports=(store)=>{
     return{
         getTable,
         getOpenTables,
+        getPendings,
         payTable,
         addTable,
         updateTable,
