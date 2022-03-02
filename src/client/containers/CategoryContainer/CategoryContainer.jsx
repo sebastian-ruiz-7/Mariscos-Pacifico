@@ -2,7 +2,7 @@
 import React from 'react'
 //Import components
 import { CategoryCard } from '@components/CategoryCard/CategoryCard'
-import { Cocteles, Tostadas, Tacos, Filetes, Bebidas, Camarones, Ordenes, Botanas, Sopas, Postres, Pescados, Pulpos} from '@containers/ItemOrderContainer/ItemOrderContainer';
+import { Cocteles, Tostadas, Tacos, Filetes, Bebidas, Camarones, Ordenes, Botanas, Sopas, Postres, Pescados, Pulpos, Otros} from '@containers/ItemOrderContainer/ItemOrderContainer';
 //Import hooks
 import { useGetImageName } from '@hooks/useGetImageName';
 //Import Context
@@ -59,7 +59,7 @@ const CategoryContainer = () => {
 
             {toggleCategory.pulpos    ? <Pulpos onClick={()=>{toggleCategoryHandler('pulpos')}}/>         : <CategoryCard description='Pulpos' imageName='pulpo' onClick={()=>{toggleCategoryHandler('pulpos')}}/>}
 
-            
+            {toggleCategory.otros     ? <Otros onClick={()=>{toggleCategoryHandler('otros')}}/>           : <CategoryCard description='Otros' imageName='others' onClick={()=>{toggleCategoryHandler('otros')}}/>}
 
         </main>
     )

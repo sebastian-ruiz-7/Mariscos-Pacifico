@@ -14,7 +14,8 @@ const useInitialState = () => {
         sopas:false,
         postres:false,
         pescados:false,
-        pulpos:false
+        pulpos:false,
+        otros:false
     });
 
     const [tableNumber,setTableNumber] = React.useState(false);

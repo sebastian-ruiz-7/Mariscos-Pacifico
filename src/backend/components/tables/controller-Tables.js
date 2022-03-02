@@ -62,17 +62,26 @@ module.exports=(store)=>{
                 if (itemIsCoctel(category)) {
                     const numberOfCoctelsWithOnlyOctopus=coctelHasOnlyOctopus(itemsList[1][j].coctelesSequence)
                     if (numberOfCoctelsWithOnlyOctopus>0) {
-                        item={category:category,item:j,cantidad:itemsList[1][j]['total']-numberOfCoctelsWithOnlyOctopus,price:index} //This line make the data structure that I want
-                        let price=store.getPrice(category,j) //This line makes the query to the db to get the price [This is a promise]
-                        pricesPromises.push(price) //I'll separate all the promises in this array in order to make this endpoint parallel rather than sequential
-                        products.push(item) 
-                        index++
 
-                        item={category:category,item:j,cantidad:numberOfCoctelsWithOnlyOctopus,price:index,onlyOctopus:true} //This line make the data structure that I want
-                        price=store.getPrice(category,j) //This line makes the query to the db to get the price [This is a promise]
-                        pricesPromises.push(price) //I'll separate all the promises in this array in order to make this endpoint parallel rather than sequential
-                        products.push(item) 
-                        index++
+                        if (numberOfCoctelsWithOnlyOctopus==itemsList[1][j]['total']) {
+                            item={category:category,item:j,cantidad:numberOfCoctelsWithOnlyOctopus,price:index,onlyOctopus:true} //This line make the data structure that I want
+                            let price=store.getPrice(category,j) //This line makes the query to the db to get the price [This is a promise]
+                            pricesPromises.push(price) //I'll separate all the promises in this array in order to make this endpoint parallel rather than sequential
+                            products.push(item) 
+                            index++
+                        } else{
+                            item={category:category,item:j,cantidad:itemsList[1][j]['total']-numberOfCoctelsWithOnlyOctopus,price:index} //This line make the data structure that I want
+                            let price=store.getPrice(category,j) //This line makes the query to the db to get the price [This is a promise]
+                            pricesPromises.push(price) //I'll separate all the promises in this array in order to make this endpoint parallel rather than sequential
+                            products.push(item) 
+                            index++
+    
+                            item={category:category,item:j,cantidad:numberOfCoctelsWithOnlyOctopus,price:index,onlyOctopus:true} //This line make the data structure that I want
+                            price=store.getPrice(category,j) //This line makes the query to the db to get the price [This is a promise]
+                            pricesPromises.push(price) //I'll separate all the promises in this array in order to make this endpoint parallel rather than sequential
+                            products.push(item) 
+                            index++
+                        }
                     }else{
                         item={category:category,item:j,cantidad:itemsList[1][j]['total'],price:index} //This line make the data structure that I want
                         let price=store.getPrice(category,j) //This line makes the query to the db to get the price [This is a promise]

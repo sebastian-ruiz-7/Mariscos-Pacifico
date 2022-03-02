@@ -168,5 +168,15 @@ const Pulpos = ({onClick}) => {
     )
 }
 
-export { Cocteles, Tostadas, Tacos, Filetes, Bebidas, Camarones, Ordenes, Botanas, Sopas, Postres, Pescados, Pulpos}
+const Otros = ({onClick}) => {
+    return (
+        <div className='item-order-container'>
+            <p onClick={onClick} className='item-order-container__name'>Otros</p>
+            <ItemOrder category='otros'  item='aguacate' itemName='Orden de Aguacate'/>
+            <ItemOrder category='otros'  item='arroz'    itemName='Orden de Arroz'/>
+        </div>
+    )
+}
+
+export { Cocteles, Tostadas, Tacos, Filetes, Bebidas, Camarones, Ordenes, Botanas, Sopas, Postres, Pescados, Pulpos, Otros}
 
