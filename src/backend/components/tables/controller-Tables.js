@@ -30,7 +30,6 @@ module.exports=(store)=>{
         //console.log(order)
         const bill=await getPrices(order)
 
-        
 
         const bodySale={
             tableNumber:id,
@@ -96,7 +95,7 @@ module.exports=(store)=>{
                     }
                 }else if (itemIsShrimp(category,j)) {
                     if (itemsList[1][j]['cabeza']) {
-                        item={category:category,item:j,cantidad:itemsList[1][j]['cabeza'],price:index}
+                        item={category:category,item:j,cantidad:itemsList[1][j]['cabeza']['total'],price:index}
                         //item={category:category,item:`${j} cabeza`,cantidad:itemsList[1][j]['cabeza'],price:index}
                         let price=store.getPrice(category,'cabeza')
                         pricesPromises.push(price)
@@ -104,7 +103,7 @@ module.exports=(store)=>{
                         index++
                     }
                     if (itemsList[1][j]['pelados']) {
-                        item={category:category,item:j,cantidad:itemsList[1][j]['pelados'],price:index}
+                        item={category:category,item:j,cantidad:itemsList[1][j]['pelados']['total'],price:index}
                         //item={category:category,item:`${j} pelados`,cantidad:itemsList[1][j]['pelados'],price:index}
                         let price=store.getPrice(category,'pelados')
                         pricesPromises.push(price)
@@ -112,7 +111,7 @@ module.exports=(store)=>{
                         index++
                     }
                 } else {
-                    item={category:category,item:j,cantidad:itemsList[1][j],price:index} //This line make the data structure that I want
+                    item={category:category,item:j,cantidad:itemsList[1][j]['total'],price:index} //This line make the data structure that I want
                     let price=store.getPrice(category,j) 
                     pricesPromises.push(price) 
                     products.push(item) 

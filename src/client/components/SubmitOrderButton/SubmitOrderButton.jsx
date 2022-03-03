@@ -19,6 +19,8 @@ const SubmitOrderButton = () => {
         }else{
             const newOrder={...order}
             newOrder['tableNumber']=tableNumber;
+            console.log(newOrder)
+            return 
             const response=await useSendOrder(newOrder)
             if (response.status===201) {
                 location.href='/abrir-mesa'

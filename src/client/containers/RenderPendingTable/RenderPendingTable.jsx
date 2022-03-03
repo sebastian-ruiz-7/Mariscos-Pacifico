@@ -1,7 +1,7 @@
 //Import dependencies
 import React from 'react'
 //Import components
-import { PendingProduct } from '@components/PendingProduct/PendingProduct'
+import { PendingProducts } from '@components/PendingProducts/PendingProducts'
 //Import styles
 import './RenderPendingTable.css'
 
@@ -14,7 +14,7 @@ export const RenderPendingTable = ({tableInfo}) => {
     
         {/* {Object.keys(tableInfo.order).map(key=><PendingProduct products />)} */}
         
-        {Object.keys(tableInfo.order).map(key=><PendingProduct key={`pending ${key}`} category={key} products={tableInfo.order[key]} />)}
+        {Object.keys(tableInfo.order).map(key=><PendingProducts key={`pending ${key}`} category={key} products={tableInfo.order[key]} />)}
 
       </div>
   )

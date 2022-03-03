@@ -54,7 +54,8 @@ const CoctelesLogic = () => {
             const newOrder={...order};
             const currentCoctel={
                 deQue:[...coctelesItem],
-                conQue:[...insideCoctel]
+                conQue:[...insideCoctel],
+                delivered:false
             }
             if (!newOrder['cocteles'][lastCoctelSizeSelected]['coctelesSequence']) {
                 newOrder['cocteles'][lastCoctelSizeSelected]['coctelesSequence']=[currentCoctel];

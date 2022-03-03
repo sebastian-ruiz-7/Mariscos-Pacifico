@@ -42,6 +42,7 @@ const ItemOrder = ({itemName,category,item}) => {
             }
             newOrder[category][item]['total']=count+1
         }else if (itemIsCoctel()) {
+            
             //This block of code only works for the cocteles logic
             if (!newOrder[category][item]) {
                 newOrder[category][item]={}
@@ -52,7 +53,16 @@ const ItemOrder = ({itemName,category,item}) => {
         }
         else{
             //This will works for the rest of items
-            newOrder[category][item]=count+1
+            if (!newOrder[category][item]) {
+                newOrder[category][item]={}
+            }
+            newOrder[category][item]['total']=count+1
+            newOrder[category][item]['delivered']=false
+            if (!newOrder[category][item]['notYetDelivered']) {
+                newOrder[category][item]['notYetDelivered']=1
+            }else{
+                newOrder[category][item]['notYetDelivered']++
+            }
         }
         return newOrder
     }
@@ -77,9 +87,15 @@ const ItemOrder = ({itemName,category,item}) => {
         }
 
         if (!newOrder[category][item][itemSelected]) {
-            newOrder[category][item][itemSelected]=1
+            newOrder[category][item][itemSelected]={total:1}
         }else{
-            newOrder[category][item][itemSelected]=newOrder[category][item][itemSelected]+1
+            newOrder[category][item][itemSelected]['total']=newOrder[category][item][itemSelected]['total']+1
+        }
+        newOrder[category][item][itemSelected]['delivered']=false
+        if (!newOrder[category][item][itemSelected]['notYetDelivered']) {
+            newOrder[category][item][itemSelected]['notYetDelivered']=1
+        }else{
+            newOrder[category][item][itemSelected]['notYetDelivered']++
         }
         newOrder[category][item]['shrimpSequence'].push(itemSelected)
         setDisabledCamaron(false)
@@ -107,7 +123,8 @@ const ItemOrder = ({itemName,category,item}) => {
             newOrder=removePropertiesFromOrder(newOrder)
         }else{
             newOrder={...order}
-            newOrder[category][item]=count-1
+            newOrder[category][item]['total']=count-1
+            newOrder[category][item]['notYetDelivered']--
             newOrder=removePropertiesFromOrder(newOrder)
         }
         return newOrder
@@ -143,7 +160,7 @@ const ItemOrder = ({itemName,category,item}) => {
                 delete newOrder[category]
             }
         } else{
-            if (newOrder[category][item]===0) {
+            if (newOrder[category][item]['total']===0) {
                 delete newOrder[category][item]
             }
             if (Object.getOwnPropertyNames(newOrder[category]).length===0) {
@@ -157,7 +174,14 @@ const ItemOrder = ({itemName,category,item}) => {
         const newOrder={...order}
         if (!disableCamaron) {
             const lastItem=newOrder[category][item]['shrimpSequence'].pop()
-            newOrder[category][item][lastItem]=newOrder[category][item][lastItem]-1;
+            newOrder[category][item][lastItem]['total']--
+            if (newOrder[category][item][lastItem]['notYetDelivered']>0) {
+                newOrder[category][item][lastItem]['notYetDelivered']--;    
+            }
+            // console.log(lastItem)
+            // console.log(newOrder[category][item])
+            //console.log(newOrder[category][item][lastItem])
+            
         }
         newOrder[category][item]['total']=newOrder[category][item]['total']-1
             setDisabledCamaron(false)
@@ -165,15 +189,13 @@ const ItemOrder = ({itemName,category,item}) => {
     }
 
     React.useEffect(()=>{
+        
         if (order[category]) {
-            if (itemIsShrimp() || itemIsCoctel()) {
-                if (!order[category][item]) {
-                    return
-                }else{
-                    order[category][item]['total'] && setCount(order[category][item]['total'])
-                }
+
+            if (!order[category][item]) {
+                return
             }else{
-                order[category][item] && setCount(order[category][item])
+                order[category][item]['total'] && setCount(order[category][item]['total'])
             }
         }
     },[order])

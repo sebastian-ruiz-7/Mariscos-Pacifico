@@ -34,6 +34,8 @@ const Pendientes = () => {
             )}
             
             <NavigationMenu activeNavItem='pendientes'/>
+
+            <div className='EvitarOverflow'></div>
         </>
     )
 }
