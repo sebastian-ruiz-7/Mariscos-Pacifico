@@ -2,13 +2,15 @@
 import React from 'react'
 //Import Context
 import { AppContext } from '@context/AppContext';
+//Import hooks
+import { useToggleCategory } from '@hooks/useToggleCategory'
+import { useSendOrder } from '@hooks/useSendOrder';
 //Import styles
 import '@components/SubmitOrderButton/SubmitOrderButton.css'
-import { useSendOrder } from '@hooks/useSendOrder';
 
 const SubmitOrderButton = () => {
 
-    const {tableNumber,order} = React.useContext(AppContext);
+    const {tableNumber,setTableNumber,order,setOrder,setToggleCategory} = React.useContext(AppContext);
 
     const [error,setError]=React.useState(false)
 
@@ -19,11 +21,12 @@ const SubmitOrderButton = () => {
         }else{
             const newOrder={...order}
             newOrder['tableNumber']=tableNumber;
-            console.log(newOrder)
-            return 
             const response=await useSendOrder(newOrder)
             if (response.status===201) {
-                location.href='/abrir-mesa'
+                setTableNumber(false)
+                setOrder(new Object())
+                setToggleCategory(new useToggleCategory())
+                //location.href='/abrir-mesa'
             }
         }
     }
@@ -33,7 +36,7 @@ const SubmitOrderButton = () => {
     return (
         <>
             {/* The styles of this className are the Same of the 'CoctelesLogic.css'*/}
-            {error && <p className='error-message'>No has ordenado nada</p>}
+            {error && <p className='error-message'>No haz ordenado nada</p>}
 
             <button className='submit-order-button' onClick={submitOrder}>
                 Enviar pedido

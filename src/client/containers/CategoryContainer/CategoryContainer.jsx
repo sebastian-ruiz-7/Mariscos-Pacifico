@@ -5,6 +5,7 @@ import { CategoryCard } from '@components/CategoryCard/CategoryCard'
 import { Cocteles, Tostadas, Tacos, Filetes, Bebidas, Camarones, Ordenes, Botanas, Sopas, Postres, Pescados, Pulpos, Otros} from '@containers/ItemOrderContainer/ItemOrderContainer';
 //Import hooks
 import { useGetImageName } from '@hooks/useGetImageName';
+import { useToggleCategory } from '@hooks/useToggleCategory'
 //Import Context
 import { AppContext } from '@context/AppContext';
 //Import styles
@@ -13,7 +14,7 @@ import '@containers/CategoryContainer/CategoryContainer.css'
 
 const CategoryContainer = () => {
 
-    const {tableNumber,toggleCategory,setToggleCategory}=React.useContext(AppContext);
+    const {tableNumber,setOrder,setTableNumber,setEditingOrder,toggleCategory,setToggleCategory}=React.useContext(AppContext);
 
     const previous=useGetImageName('previous');
     
@@ -23,7 +24,11 @@ const CategoryContainer = () => {
     }
 
     const goBackToSelectTable=()=>{
-        location.href='/abrir-mesa'
+        setTableNumber(false)
+        setOrder(new Object())
+        setToggleCategory(new useToggleCategory())
+        setEditingOrder(false)
+        // location.href='/abrir-mesa'
     }
 
     return (

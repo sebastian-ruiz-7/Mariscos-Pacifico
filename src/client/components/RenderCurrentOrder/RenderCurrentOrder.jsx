@@ -13,10 +13,10 @@ import './RenderCurrentOrder.css'
 
 const RenderCurrentOrder = () => {
 
-    const {order,tableNumber,modalAlert,openModalAlert,setEditingOrder} = React.useContext(AppContext);
+    const {order,tableNumber,setTableNumber,modalAlert,openModalAlert,setEditingOrder} = React.useContext(AppContext);
 
     const goBackToSelectTable=()=>{
-        location.href='/mesas-abiertas'
+        setTableNumber(false)
     }
 
     const editTableNumber=()=>{

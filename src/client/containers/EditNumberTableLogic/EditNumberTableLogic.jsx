@@ -8,7 +8,7 @@ import { useChangeTableNumber } from '../../hooks/useChangeTableNumber';
 
 const EditNumberTableLogic = () => {
 
-    const {tableNumber,openModalAlert} = React.useContext(AppContext);
+    const {tableNumber,setTableNumber,openModalAlert} = React.useContext(AppContext);
 
     const [error,setError]=React.useState(false)
     const [errorText,setErrorText]=React.useState(`Se debe asignar un número antes de continuar`);
@@ -33,7 +33,8 @@ const EditNumberTableLogic = () => {
             }
         }
         if (response.status===200) {
-            location.href='/mesas-abiertas'
+            setTableNumber(newTableNumber)
+            openModalAlert(false)
         }
     }
 

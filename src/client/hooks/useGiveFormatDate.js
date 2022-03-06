@@ -16,9 +16,6 @@ export const useGiveFormatDate = (date) => {
     today=today.join('-')
 
     //I need insert the code from above because the database retuns the date with the format 'YYYY-MM-DD' and JS gives it in 'M/D/YYYY'
-    
-    console.log('today',today)
-    console.log('date',date)
 
     //This if compares if the sale is from today. If it is, so the function 'formatDate' will display just the time of the sale
     if (today===date.substring(0,10)) {

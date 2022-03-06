@@ -10,7 +10,7 @@ import './MakeBill.css'
 
 const MakeBillAlert = () => {
 
-    const {tableNumber,openModalAlert} = React.useContext(AppContext);
+    const {tableNumber,setTableNumber,setEditingOrder,openModalAlert} = React.useContext(AppContext);
 
 
     const makeBill=async(event)=>{
@@ -18,11 +18,12 @@ const MakeBillAlert = () => {
         const response=await useMakeBill(tableNumber) 
         
         if (response.status=200) {
-            const bill=response.body
             window.open('/ticket','_blank')
-            location.href='/mesas-abiertas'
+            openModalAlert(false)
+            setEditingOrder(false)
+            setTableNumber(false)
+            //location.href='/mesas-abiertas'
         }
-        // console.log(bill)
     }
 
   return (

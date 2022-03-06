@@ -1,14 +1,27 @@
 //Import dependencies
 import React from 'react'
+//Import Context
+import { AppContext } from '@context/AppContext'
 //Import containers
-import { AbrirMesaContainer } from '@containers/AbrirMesaContainer/AbrirMesaContainer'
+import { CategoryContainer } from '@containers/CategoryContainer/CategoryContainer'
+import { NavigationMenu } from '@containers/NavigationMenu/NavigationMenu'
+import { TableItem } from '@components/TableItem/TableItem'
+//Import components
+import { Modal } from '@containers/Modal/Modal'
+import { CoctelesLogic } from '@containers/CoctelesLogic/CoctelesLogic'
+import { SubmitOrderButton } from '@components/SubmitOrderButton/SubmitOrderButton';
 //Import hooks
 import { useGetAvailableTables } from '@hooks/useGetTables'
+
+// //Import containers
+// import { AbrirMesaContainer } from '@containers/AbrirMesaContainer/AbrirMesaContainer'
 
 const AbirMesa = () => {
 
     const [loading,setLoading]=React.useState(true)
     const [tables,setTables]=React.useState([])
+
+    const {tableNumber,modal} = React.useContext(AppContext);
 
     React.useEffect(()=>{
         if (!localStorage.getItem('sessionJWT')) {
@@ -23,11 +36,35 @@ const AbirMesa = () => {
 
             setLoading(false)
         }
-    },[])
+    },[tableNumber])
 
     return (
         <>
-            {!loading && (<AbrirMesaContainer openTables={tables} />)}   
+            {!loading && (
+                <>
+                    {!tableNumber && tables.map(table => (<TableItem tableNumber={table} key={`TableNumber ${table}`}/>) )}
+        
+                    {tableNumber && (
+                        <>
+                            <CategoryContainer/>
+                            <SubmitOrderButton />
+                        </>
+
+                    )}
+                                
+                    <NavigationMenu activeNavItem='abrir mesa'/>
+
+
+                    {modal && <Modal> 
+                        < CoctelesLogic />
+                    </Modal>}
+
+                    
+
+                    <div className='EvitarOverflow'></div>
+                </>
+            )}    
+             {/* <AbrirMesaContainer openTables={tables} />)}    */}
         </>
     )
 }

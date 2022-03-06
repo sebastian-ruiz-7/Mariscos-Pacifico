@@ -13,6 +13,7 @@ router.get('/pendings/',secure('decodeToken'),getPendings)
 router.get('/pay/:id',secure('decodeToken'),payTable)    //pay a Table
 
 router.post('/',secure('decodeToken'),addTable)    //This method will open a table
+router.post('/pendings',secure('decodeToken'),pendingsHandler)
 
 router.put('/',secure('decodeToken'),updateTable) //This method will update the order of a table
 router.put('/updateTable',secure('decodeToken'),updateTableNumber) //This method will update the number of a Table
@@ -63,6 +64,12 @@ function updateTableNumber(req,res,next) {
 
 function deleteTable(req,res,next) {
     controller.deleteTable(req.params.id)
+        .then(message=>response.succes(req,res,message,200))
+        .catch(next)
+}
+
+function pendingsHandler(req,res,next) {
+    controller.pendingsHandler(req.body)
         .then(message=>response.succes(req,res,message,200))
         .catch(next)
 }

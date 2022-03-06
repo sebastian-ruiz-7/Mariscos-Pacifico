@@ -23,7 +23,7 @@ const MesasAbiertas = () => {
             }
             fetchData()
         }
-    },[])
+    },[tableNumber])
 
     return (
         <>

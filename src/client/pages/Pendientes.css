@@ -1,0 +1,12 @@
+@media (min-width:720px) {
+    .pendientes-container{
+        width: 100vw;
+        height: calc(100vh - 60px);
+        display: grid;
+        place-content: center;
+        grid-template-columns: repeat(auto-fill,330px);
+        /* grid-template-rows: repeat(auto-fill,800px); */
+        gap: 5px 20px; 
+        /* grid-auto-rows: auto; */
+    }
+}

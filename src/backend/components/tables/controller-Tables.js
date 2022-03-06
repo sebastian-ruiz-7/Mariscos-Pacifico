@@ -23,6 +23,70 @@ module.exports=(store)=>{
         return pendings
     }
 
+    const pendingsHandler=async(deliveredPendings)=>{
+        const pendings=await store.get('openTables')
+
+        let tablesWithDelivered=deliveredPendings.map(table=>table.tableNumber)
+
+        tablesWithDelivered=pendings.filter(table=>{
+            if (tablesWithDelivered.includes(table.tableNumber)) {
+                return true
+            } else{
+                return false
+            }
+        })
+
+        // let tableInfo=deliveredPendings[1]
+        //console.log(deliveredPendings)
+        deliveredPendings.forEach(tableInfo=>{
+            const index=tablesWithDelivered.findIndex(table=>table.tableNumber===tableInfo.tableNumber)
+
+            for (const category in tableInfo.order) {
+
+                if (category==='cocteles') {
+                    for (const size in tableInfo.order[category]) {
+                        for (const indexCoctel of tableInfo.order[category][size]) {
+                            tablesWithDelivered[index].order[category][size].coctelesSequence[indexCoctel].delivered=true
+                        }
+                    }
+                }
+                else if (category==='camarones') {
+                    for (const flavor in tableInfo.order[category]) {
+                        for (const typeOfShrimp in tableInfo.order[category][flavor]) {
+                            tablesWithDelivered[index].order[category][flavor][typeOfShrimp].delivered=true
+                            tablesWithDelivered[index].order[category][flavor][typeOfShrimp].notYetDelivered=0
+                        }
+                    }    
+                }else{
+                    for (const item in tableInfo.order[category]) {
+                        tablesWithDelivered[index].order[category][item].delivered=true
+                        tablesWithDelivered[index].order[category][item].notYetDelivered=0
+                    }
+                }
+            }
+    
+        })
+        
+        // const updateTable=async(reqBody)=>{
+        //     const newOrder=JSON.stringify(reqBody.order)
+        //     const changeOrder=await store.updateTable('openTables',{tableNumber:reqBody.tableNumber,order:newOrder})
+        //     return 'Procedimiento correcto'
+        // }
+
+        const updateTablePromises=[]
+
+        tablesWithDelivered.forEach(tableInfo=>{
+            const newOrder=JSON.stringify(tableInfo.order)
+            updateTablePromises.push(store.updateTable('openTables',{tableNumber:tableInfo.tableNumber,order:newOrder}))
+        })
+
+        const updateTable=await Promise.all(updateTablePromises)
+
+        const newOrders=await getPendings()
+        
+        return newOrders
+    }
+
     const payTable=async(id)=>{
         const table=await store.get('openTables',{tableNumber:id})
         
@@ -256,21 +320,12 @@ module.exports=(store)=>{
         return date;
     }
 
-    // const cleanOrder=(order)=>{
-    //     const properties=Object.getOwnPropertyNames(order)
-    //     for(let i=0; i<properties.length;i++){
-    //         if (Object.getOwnPropertyNames(order[properties[i]]).length==0) {
-    //             delete order[properties[i]]
-    //         }
-    //     }
-    //     delete order.table;
-    //     return order
-    // }
 
     return{
         getTable,
         getOpenTables,
         getPendings,
+        pendingsHandler,
         payTable,
         addTable,
         updateTable,

@@ -124,7 +124,9 @@ const ItemOrder = ({itemName,category,item}) => {
         }else{
             newOrder={...order}
             newOrder[category][item]['total']=count-1
-            newOrder[category][item]['notYetDelivered']--
+            if (newOrder[category][item]['notYetDelivered']>0) {
+                newOrder[category][item]['notYetDelivered']--
+            }
             newOrder=removePropertiesFromOrder(newOrder)
         }
         return newOrder
