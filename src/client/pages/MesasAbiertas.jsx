@@ -5,6 +5,8 @@ import { NavigationMenu } from '@containers/NavigationMenu/NavigationMenu'
 import { useGetOpenTables } from '@hooks/useGetTables'
 import { TableItem } from '@components/TableItem/TableItem'
 import { CurrentOrderContainer } from '@containers/CurrentOrderContainer/CurrentOrderContainer'
+//Import socket
+import { socket } from '../config'
 //Import Context
 import { AppContext } from '@context/AppContext'
 
@@ -24,6 +26,10 @@ const MesasAbiertas = () => {
             fetchData()
         }
     },[tableNumber])
+
+    React.useEffect(()=>{
+        socket.on('updateOpenTables',openTables=>setOpenTables(openTables))
+    },[socket])
 
     return (
         <>

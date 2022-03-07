@@ -1,5 +1,6 @@
 //Require dependencies
 const sales=require('../sales/index-Sales')
+const { socket } =require('../../socket')
 
 module.exports=(store)=>{
     
@@ -20,6 +21,8 @@ module.exports=(store)=>{
 
     const getPendings=async()=>{
         const pendings=await store.get('openTables')
+
+        socket.io.emit('newPendings',pendings)
         return pendings
     }
 
@@ -110,6 +113,10 @@ module.exports=(store)=>{
         parallelPromises.push(store.removeFromLastSaleInserted(lastSaleInserted.tableNumber,lastSaleInserted.fecha))
         parallelPromises.push(store.add('lastSaleInserted',{tableNumber:bodySale.tableNumber,fecha:bodySale.fecha}))
         const parallelPromisesResult=await Promise.all(parallelPromises)
+
+        handleSockets()
+
+
         return 'Procedimiento correcto'
     }
 
@@ -279,12 +286,34 @@ module.exports=(store)=>{
         const mesero=req.user.id
         order=JSON.stringify(order)
         const abirMesa=await store.add('openTables',{tableNumber:mesa,fecha:dateTime,mesero:mesero,order:order})
+
+        handleSockets()
+                
         return 'Procedimiento correcto'
+    }
+
+    const getAvilableTables=(currentTables)=>{
+        const tables=['1','2','3','4','5','6','7']; //Due to the types in JS, the includes method verifies the value and the type. That's why I'm using this array
+        const openTables=[] //In this array I'll put all the available tables
+    
+        for (let index = 0; index < tables.length; index++) {
+            if (!currentTables.includes(tables[index])) {
+                openTables.push(tables[index])
+            }
+        }
+
+        //The 'Llevar' table must always be available
+        openTables.push('Llevar')
+
+        return openTables
     }
 
     const updateTable=async(reqBody)=>{
         const newOrder=JSON.stringify(reqBody.order)
         const changeOrder=await store.updateTable('openTables',{tableNumber:reqBody.tableNumber,order:newOrder})
+
+        handleSockets()
+
         return 'Procedimiento correcto'
     }
 
@@ -297,6 +326,9 @@ module.exports=(store)=>{
             }
         }
         const changeOrder=await store.updateTableNumber('openTables',{tableNumber:newTableNumber},reqBody.oldTableNumber)
+
+        handleSockets()
+        
         return 'Procedimiento correcto'
     }
 
@@ -318,6 +350,21 @@ module.exports=(store)=>{
             date=`${horas}:${minutos}:${segundos}`
         }
         return date;
+    }
+
+    const handleSockets=async()=>{
+
+        const promises=[]
+
+        promises.push(getPendings())
+        promises.push(getOpenTables())
+
+        const responses=await Promise.all(promises)
+        const availableTables=getAvilableTables(responses[1])
+
+        socket.io.emit('newPendings',responses[0])
+        socket.io.emit('updateOpenTables',responses[1])
+        socket.io.emit('updateAvailableTables',availableTables)
     }
 
 

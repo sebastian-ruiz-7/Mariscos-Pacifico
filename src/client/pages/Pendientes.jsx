@@ -8,6 +8,8 @@ import { useUpdatePendings } from '@hooks/useUpdatePendings'
 //Import containers
 import { NavigationMenu } from '@containers/NavigationMenu/NavigationMenu'
 import { RenderPendingTable } from '@containers/RenderPendingTable/RenderPendingTable'
+//Import socket
+import { socket } from '../config'
 //Import styles
 import './Pendientes.css'
 
@@ -42,6 +44,10 @@ const Pendientes = () => {
 
         fetchData()
     },[])
+
+    React.useEffect(()=>{
+        socket.on('newPendings',pendings=>setPendings(pendings))
+    },[socket])
 
     return (
         <main className='pendientes-container'>

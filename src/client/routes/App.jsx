@@ -3,7 +3,6 @@ import React from 'react'
 import {BrowserRouter,Route,Routes} from 'react-router-dom'
 //Import pages
 import { Login } from '@pages/Login'
-import { Home } from '@pages/Home.jsx'
 import { Pruebas } from '@pages/Pruebas'
 import { Pendientes } from '@pages/Pendientes'
 import { MesasAbiertas } from '@pages/MesasAbiertas'
@@ -17,10 +16,22 @@ import { NotFound } from '@pages/NotFound'
 import { AppContext } from '@context/AppContext'
 //Import Hooks
 import { useInitialState } from '@hooks/useInitialState'
+//Import API address
+import { API_address } from '../config'
+import { socket } from '../config'
 //Import styles
 import './App.css'
 
+
 const App = () => {
+
+    React.useEffect(()=>{
+        socket.on('newUser',socket=>{
+            console.log(socket)
+        })
+    },[socket])
+
+
     const initialState=useInitialState()
     return (
         <AppContext.Provider value={initialState}>

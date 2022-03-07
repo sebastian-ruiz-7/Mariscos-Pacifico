@@ -12,6 +12,7 @@ import { CoctelesLogic } from '@containers/CoctelesLogic/CoctelesLogic'
 import { SubmitOrderButton } from '@components/SubmitOrderButton/SubmitOrderButton';
 //Import hooks
 import { useGetAvailableTables } from '@hooks/useGetTables'
+import { socket } from '../config'
 
 // //Import containers
 // import { AbrirMesaContainer } from '@containers/AbrirMesaContainer/AbrirMesaContainer'
@@ -37,6 +38,10 @@ const AbirMesa = () => {
             setLoading(false)
         }
     },[tableNumber])
+
+    React.useEffect(()=>{
+        socket.on('updateAvailableTables',availableTables=>setTables(availableTables))
+    },[socket])
 
     return (
         <>
