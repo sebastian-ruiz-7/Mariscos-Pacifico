@@ -7,7 +7,7 @@ const config=require('../config')
 
 let dbConfig={
     host:config.database.host,
-    user:'root',
+    user:'myuser',
     database:config.database.database,
     password:config.database.password,
     port:config.database.port,

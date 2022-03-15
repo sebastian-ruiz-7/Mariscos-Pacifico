@@ -38,8 +38,6 @@ const Pendientes = () => {
         async function fetchData() {
             const orders=await useGetOrders()
             setPendings(orders.body)
-            console.log(orders)
-            console.log(deliveredOrder)
         }
 
         fetchData()

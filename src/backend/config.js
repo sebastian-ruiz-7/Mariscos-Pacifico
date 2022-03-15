@@ -9,7 +9,7 @@ module.exports={
     database:{
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
-        user: process.env.USER,
+        user: process.env.USERDB,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_DATABASE
     },

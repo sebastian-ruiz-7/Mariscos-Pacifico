@@ -10,7 +10,6 @@ function connect(server) {
     })
 
     socket.io.on('connection',socket=>{
-      console.log(socket.id)
       socket.emit('newUser',socket.id)
     })
 

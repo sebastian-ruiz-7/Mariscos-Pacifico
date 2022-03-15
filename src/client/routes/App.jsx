@@ -27,7 +27,6 @@ const App = () => {
 
     React.useEffect(()=>{
         socket.on('newUser',socket=>{
-            console.log(socket)
         })
     },[socket])
 
