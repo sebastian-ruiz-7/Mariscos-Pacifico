@@ -17,7 +17,6 @@ const BillTickerMaker = ({id}) => {
     }else{
         const fetchData=async()=>{
             const sale=await useGetSale(id)
-            console.log(sale)
             if (sale.status===200) {
               setTicket(sale.body)
             }
@@ -56,7 +55,7 @@ const BillTickerMaker = ({id}) => {
           </div>
           
           <hr />
-
+          <p>Mesa {ticket.tableNumber}</p>
           <p>Fecha {ticket.fecha.substring(0,10)}</p>
           <p>Hora {ticket.fecha.substring(10)}</p>
         </>
