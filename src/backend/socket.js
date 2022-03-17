@@ -5,8 +5,8 @@ let socket={}
 function connect(server) {
     socket.io=new Server(server,{
         cors:{
-            origin:'http://192.168.1.157:3005'
-        }
+            origin: true
+        },
     })
 
     socket.io.on('connection',socket=>{

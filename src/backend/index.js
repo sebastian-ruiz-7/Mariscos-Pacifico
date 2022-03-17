@@ -24,11 +24,11 @@ app.use(express.json());
 app.use(cors()); //Allows all domains use the API, not recomended for production
 
 
-app.use('/user',user)
-app.use('/login',auth)
-app.use('/tables',tables)
-app.use('/sales',sales)
-app.use('/products',products)
+app.use('/api/user',user)
+app.use('/api/login',auth)
+app.use('/api/tables',tables)
+app.use('/api/sales',sales)
+app.use('/api/products',products)
 //Error handling by middleware
 app.use(error);
 
