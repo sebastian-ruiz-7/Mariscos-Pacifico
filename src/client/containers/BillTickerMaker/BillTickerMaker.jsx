@@ -50,8 +50,8 @@ const BillTickerMaker = ({id}) => {
               
               )}
             <p></p>
-            <p>Total:</p>
-            <p>{ticket.total}</p>
+            <p className='total-text'>Total:</p>
+            <p className='total-text'>{ticket.total}</p>
           </div>
           
           <hr />

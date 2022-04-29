@@ -14,16 +14,8 @@ const CurrentOrderCategoryContainer = ({category,items}) => {
             ))
         } else if (itemIsShrimp()) {
 
-          return(
-            itemsArray.map(key=>{
-              if (shrimpWithOrWithoutHead(key)) {
-                return <ItemOrderCard ItemName={key} ItemCount={items[key]['total']} key={`Item Order Card ${key}`} />
-              }else{
-                return  <ItemOrderCard ItemName={key} ItemCount={items[key]} key={`Item Order Card ${key}`} />
-              }
-            }))
-
-            
+          return itemsArray.map(key=>(
+            <ItemOrderCard ItemName={key} ItemCount={items[key]['total']} key={`Item Order Card ${key}`} />))
         } else{
           return(
               itemsArray.map(key=>

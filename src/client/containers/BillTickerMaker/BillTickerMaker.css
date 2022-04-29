@@ -1,25 +1,34 @@
 .name-restaurant{
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .ticket-container{
-    font-size: 10px;
-    width: 5.8cm;
+    font-size: 14px;
+    width: 7.6cm;
     font-family: 'Roboto Mono', monospace;
     text-align: center;
     background-color: white;
     overflow: auto;
 }
 
+/*  */
+
 .ticket-products-container{
     display: grid;
-    font-weight: 300;
-    grid-template-columns: 0.5cm 3.1cm 1.1cm 1.1cm;
-    grid-auto-rows: 0.9cm;
+    font-weight: 500;
+    grid-template-columns: 0.65cm 4.07cm 1.44cm 1.44cm;
+    grid-auto-rows: 1.17cm;
 }
 
 .ticket-item-name{
     text-align: left;
     /* line-height: 20px; */
 }
+
+.total-text{
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 0.8cm;
+}
+
