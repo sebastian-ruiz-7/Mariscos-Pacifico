@@ -53,7 +53,7 @@ module.exports=(store)=>{
                         }
                     }
                 }
-                else if (category==='camarones') {
+                else if (category==='camarones' && (tableInfo.order['diabla'] || tableInfo.order['mojoDeAjo'] || tableInfo.order['mantequilla'] || tableInfo.order['natural'] || tableInfo.order['ajillo'] )) {
                     for (const flavor in tableInfo.order[category]) {
                         for (const typeOfShrimp in tableInfo.order[category][flavor]) {
                             tablesWithDelivered[index].order[category][flavor][typeOfShrimp].delivered=true

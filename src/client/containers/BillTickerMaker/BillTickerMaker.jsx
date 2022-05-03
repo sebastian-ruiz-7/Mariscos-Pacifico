@@ -32,7 +32,8 @@ const BillTickerMaker = ({id}) => {
     <div className='ticket-container'>
       <p className='name-restaurant'>Mariscos Pacífico</p>
       <p>Av Enrique Díaz de León Sur 305 Sur, Col Americana, Americana, 
-        <br /> C.P: 44160 Guadalajara, Jal.</p>
+        <br /> C.P: 44160 Guadalajara, Jal.
+        <br /> Cel: 33 3903 6832</p>
       <hr />
 
       {ticket && (

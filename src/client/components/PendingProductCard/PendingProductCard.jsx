@@ -52,6 +52,7 @@ export const PendingProductCard = ({category,element,products,tableNumber}) => {
             newDeliveredOrder[tableIndex].order[category][element]=true
         }
         setDeliveredOrder(newDeliveredOrder)
+        console.log(newDeliveredOrder)
     }
 
 
@@ -91,7 +92,9 @@ export const PendingProductCard = ({category,element,products,tableNumber}) => {
         setDeliveredOrder(newDeliveredOrder)
     }
 
+    
     const renderProduct=()=>{
+
         if (category==='cocteles') { 
 
             if (element==='grande') {
@@ -133,10 +136,10 @@ export const PendingProductCard = ({category,element,products,tableNumber}) => {
                     )})
                 )
             }
-        }else if (category==='camarones') {
-            
+        }else if (category==='camarones' && (element==='diabla' || element==='mojoDeAjo' || element==='mantequilla' || element==='natural' || element==='ajillo' )) {
             
             return Object.keys(products[element]).map(tipoDeCamaron=>{
+                //console.log(tipoDeCamaron)
                 if (tipoDeCamaron==='cabeza' || tipoDeCamaron==='pelados') {
                     const [delivered,setDelivered] = React.useState(false)
 
@@ -152,6 +155,21 @@ export const PendingProductCard = ({category,element,products,tableNumber}) => {
                                 <p className={`pending-product__text pending-product-cuantity ${delivered && 'product-delivered'}`}>{products[element][tipoDeCamaron]['notYetDelivered']}</p>
                             </div>
                         )}
+                        </>
+                    )
+                }else{
+                    const [delivered,setDelivered] = React.useState(false)
+
+                    return (
+                        <>
+                            {products[element].notYetDelivered > 0 && (
+                                <div className={`pending-product-container`}>
+                                    <div onClick={()=>{setDelivered(prev=>!prev) 
+                                        handleDeliveredProduct(!delivered)}} className={`pending-product__circle ${delivered && 'product-delivered-circle'}`}>{delivered && <img className='product-delivered-image' src={useGetImageName('delivered')} alt="" />}</div>
+                                    <p className={`pending-product__text pending-product-itemName ${delivered && 'product-delivered'}`}>{category} {element}</p>
+                                    <p className={`pending-product__text pending-product-cuantity ${delivered && 'product-delivered'}`}>{products[element]['notYetDelivered']}</p>
+                                </div>
+                            )}
                         </>
                     )
                 }

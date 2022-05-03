@@ -36,6 +36,7 @@ export const ChangePriceContainer = () => {
             <option value="postres">Postres</option>
             <option value="pescados">Pescados</option>
             <option value="pulpos">Pulpos</option>
+            <option value="otros">Otros</option>
         </select>
 
         {selectedCategory!=='categoria' && products.map(product=>
