@@ -27,6 +27,7 @@ module.exports=(store)=>{
     }
 
     const pendingsHandler=async(deliveredPendings)=>{
+        console.log(deliveredPendings)
         const pendings=await store.get('openTables')
 
         let tablesWithDelivered=deliveredPendings.map(table=>table.tableNumber)
@@ -53,7 +54,7 @@ module.exports=(store)=>{
                         }
                     }
                 }
-                else if (category==='camarones') {
+                else if (category==='camarones' && (tableInfo.order.camarones['diabla'] || tableInfo.order.camarones['mojoDeAjo'] || tableInfo.order.camarones['ajillo'] || tableInfo.order.camarones['natural'] || tableInfo.order.camarones['mantequilla'])) {
                     for (const flavor in tableInfo.order[category]) {
                         for (const typeOfShrimp in tableInfo.order[category][flavor]) {
                             tablesWithDelivered[index].order[category][flavor][typeOfShrimp].delivered=true
@@ -272,17 +273,11 @@ module.exports=(store)=>{
     }
 
     const addTable=async(req)=>{
-        const dateTime=cleanDate()
-        let mesa=req.body.tableNumber;
-        if (typeof(mesa)==='string') {
-            if (mesa.toLowerCase()==='llevar' ) {
-                const time=cleanDate(true)
-                mesa=`${mesa}-${time}`
-            }
-        }
+        const dateTime=req.body.fecha
+        const mesa=req.body.tableNumber;
         let order=req.body
         delete order['tableNumber']
-
+        delete order['fecha']
         const mesero=req.user.id
         order=JSON.stringify(order)
         const abirMesa=await store.add('openTables',{tableNumber:mesa,fecha:dateTime,mesero:mesero,order:order})

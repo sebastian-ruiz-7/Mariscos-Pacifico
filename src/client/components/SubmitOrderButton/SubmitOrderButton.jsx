@@ -21,6 +21,16 @@ const SubmitOrderButton = () => {
         }else{
             const newOrder={...order}
             newOrder['tableNumber']=tableNumber;
+            newOrder['fecha']=cleanDate()
+            
+            if (typeof(newOrder['tableNumber'])==='string') {
+                if (newOrder['tableNumber'].toLowerCase()==='llevar' ) {
+                    const time=cleanDate(true)
+                    newOrder['tableNumber']=`${newOrder['tableNumber']}-${time}`
+                }
+            }
+
+
             const response=await useSendOrder(newOrder)
             if (response.status===201) {
                 setTableNumber(false)
@@ -31,6 +41,21 @@ const SubmitOrderButton = () => {
         }
     }
 
+
+    const cleanDate=(justTime)=>{
+        let date=new Date();
+        const años=date.getFullYear()
+        const mes=date.getMonth()+1;
+        const dia=date.getDate()
+        const horas=date.getHours()
+        const minutos=date.getMinutes()
+        const segundos=date.getSeconds()
+        date=`${años}-${mes}-${dia} ${horas}:${minutos}:${segundos}`
+        if (justTime===true) {
+            date=`${horas}:${minutos}:${segundos}`
+        }
+        return date;
+    }
 
 
     return (

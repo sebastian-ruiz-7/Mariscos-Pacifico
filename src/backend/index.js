@@ -50,7 +50,7 @@ socket.connect(server)
 //     console.log(socket.id)
 // })
 
-server.listen(config.api.port,'192.168.1.157',(err)=>{
+server.listen(config.api.port,'192.168.100.4',(err)=>{
     if (err) console.log(err)
     else console.log(`Server listend in port ${config.api.port}`)
 })

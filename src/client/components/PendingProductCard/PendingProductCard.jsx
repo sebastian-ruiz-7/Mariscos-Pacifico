@@ -52,6 +52,7 @@ export const PendingProductCard = ({category,element,products,tableNumber}) => {
             newDeliveredOrder[tableIndex].order[category][element]=true
         }
         setDeliveredOrder(newDeliveredOrder)
+        console.log(newDeliveredOrder)
     }
 
 
@@ -133,7 +134,7 @@ export const PendingProductCard = ({category,element,products,tableNumber}) => {
                     )})
                 )
             }
-        }else if (category==='camarones') {
+        }else if (category==='camarones' && (element==='diabla' || element==='mojoDeAjo' || element==='ajillo' || element==='natural' || element==='mantequilla')) {
             
             
             return Object.keys(products[element]).map(tipoDeCamaron=>{
