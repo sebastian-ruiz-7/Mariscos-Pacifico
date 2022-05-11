@@ -172,8 +172,10 @@ const Otros = ({onClick}) => {
     return (
         <div className='item-order-container'>
             <p onClick={onClick} className='item-order-container__name'>Otros</p>
-            <ItemOrder category='otros'  item='aguacate' itemName='Orden de Aguacate'/>
-            <ItemOrder category='otros'  item='arroz'    itemName='Orden de Arroz'/>
+            <ItemOrder category='otros'  item='aguacateGrande' itemName='Ord Aguacate Grande'/>
+            <ItemOrder category='otros'  item='arrozGrande'    itemName='Ord Arroz Grande'/>
+            <ItemOrder category='otros'  item='aguacateChica' itemName='Ord Aguacate Chica'/>
+            <ItemOrder category='otros'  item='arrozChica'    itemName='Ord Arroz Chica'/>
         </div>
     )
 }
