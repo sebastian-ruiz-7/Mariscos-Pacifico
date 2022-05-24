@@ -62,7 +62,6 @@ const Bebidas = ({onClick}) => {
         <div className='item-order-container'>
             <p onClick={onClick} className='item-order-container__name'>Bebidas</p>
             <ItemOrder category='bebidas' item='victoria' itemName='Victoria'/>
-            <ItemOrder category='bebidas' item='estrella' itemName='Estrella'/>
             <ItemOrder category='bebidas' item='corona' itemName='Corona'/>
             <ItemOrder category='bebidas' item='pacifico' itemName='Pacífico'/>
             <ItemOrder category='bebidas' item='negraModelo' itemName='Negra Modelo'/>
@@ -71,6 +70,7 @@ const Bebidas = ({onClick}) => {
             <ItemOrder category='bebidas' item='michelada' itemName='Michelada'/>
             <ItemOrder category='bebidas' item='refrescos' itemName='Refrescos'/>
             <ItemOrder category='bebidas' item='taparosca' itemName='Taparosca, Bote, Ligth'/>
+            <ItemOrder category='bebidas' item='cervezaRaiz' itemName='Cerveza de Raíz'/>
             <ItemOrder category='bebidas' item='aguaFresca' itemName='Agua Fresca'/>
             <ItemOrder category='bebidas' item='botellaAgua' itemName='Botella de agua'/>
             <ItemOrder category='bebidas' item='clamato' itemName='Clamato'/>
@@ -176,6 +176,8 @@ const Otros = ({onClick}) => {
             <ItemOrder category='otros'  item='arrozGrande'    itemName='Ord Arroz Grande'/>
             <ItemOrder category='otros'  item='aguacateChica' itemName='Ord Aguacate Chica'/>
             <ItemOrder category='otros'  item='arrozChica'    itemName='Ord Arroz Chica'/>
+            <ItemOrder category='otros'  item='diabla'         itemName='Mantequilla Diabla'/>
+            <ItemOrder category='otros'  item='ajo'            itemName='Ord Ajo'/>
         </div>
     )
 }
