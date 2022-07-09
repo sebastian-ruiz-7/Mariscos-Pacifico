@@ -53,6 +53,7 @@ const Filetes = ({onClick}) => {
             <ItemOrder category='filetes' item='ajillo' itemName='Ajillo'/>
             <ItemOrder category='filetes' item='veracruzana' itemName='Veracruzana'/>
             <ItemOrder category='filetes' item='diabla' itemName='Diabla'/>
+            <ItemOrder category='filetes' item='mediaOrdenFilete' itemName='Media Orden de Filete'/>
         </div>
     )
 }
@@ -89,6 +90,7 @@ const Camarones = ({onClick}) => {
             <ItemOrder category='camarones' item='natural' itemName='Natural'/>
             <ItemOrder category='camarones' item='empanizado' itemName='Empanizado'/>
             <ItemOrder category='camarones' item='mexicana' itemName='Mexicana'/>
+            <ItemOrder category='camarones' item='mediaOrdenPelados' itemName='Media Orden Pelados'/>
         </div>
     )
 }
@@ -103,6 +105,7 @@ const Ordenes = ({onClick}) => {
             <ItemOrder category='ordenes' item='cevicheCamaron' itemName='Ceviche de Camarón'/>
             <ItemOrder category='ordenes' item='empCamaron' itemName='Emp. de Camarón'/>
             <ItemOrder category='ordenes' item='empMarlin' itemName='Emp. de Marlin'/>
+            <ItemOrder category='ordenes' item='preparado' itemName='Preparado'/>
         </div>
     )
 }
@@ -116,6 +119,7 @@ const Botanas = ({onClick}) => {
             <ItemOrder category='botanas' item='camaron' itemName='Botana de Camarón'/>
             <ItemOrder category='botanas' item='pulpo' itemName='Botana de Pulpo'/>
             <ItemOrder category='botanas' item='ensaladaCamaron' itemName='Ensalada de Camarón'/>
+            <ItemOrder category='botanas' item='mediaOrdenBotana' itemName='Media Orden Botana'/>
         </div>
     )
 }
@@ -178,6 +182,7 @@ const Otros = ({onClick}) => {
             <ItemOrder category='otros'  item='arrozChica'    itemName='Ord Arroz Chica'/>
             <ItemOrder category='otros'  item='diabla'         itemName='Mantequilla Diabla'/>
             <ItemOrder category='otros'  item='ajo'            itemName='Ord Ajo'/>
+            <ItemOrder category='otros'  item='consome'        itemName='Consomé'/>
         </div>
     )
 }
