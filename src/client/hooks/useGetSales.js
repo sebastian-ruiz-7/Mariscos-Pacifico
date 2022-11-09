@@ -6,7 +6,14 @@ export const useGetSales =async (sinceDate,untilDate) => {
     let URL_ENDPOINT=API_address;
 
     if (!sinceDate,!untilDate) {
-        URL_ENDPOINT=URL_ENDPOINT+'sales/today'
+        let today=new Date().toLocaleDateString()
+        today=today.split('/')
+        const month=today[0]
+        today[0]=today[1]
+        today[1]=month
+        today=today.reverse()
+        today=today.join('-')
+        URL_ENDPOINT=`${URL_ENDPOINT}sales/today?date=${today}`
     }
 
     const token=useGetToken()

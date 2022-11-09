@@ -11,8 +11,13 @@ module.exports=(store)=>{
         return response
     }
 
-    const getSalesOfToday=async()=>{
-        const today=formatDate()
+    const getSalesOfToday=async(date)=>{
+        let today;
+        if (date) {
+            today=date
+        }else{
+            today=formatDate()
+        }
         // const today='2022-02-24'
         const endToday=`${today} 23:59:59`
         const sales=await store.getSales(today,endToday);

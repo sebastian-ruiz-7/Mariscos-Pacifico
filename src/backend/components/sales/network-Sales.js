@@ -20,7 +20,7 @@ function getLastSale(req,res,next) {
 
 
 function getSalesOfToday(req,res,next) {
-    controller.getSalesOfToday()
+    controller.getSalesOfToday(req.query.date)
         .then(message=>response.succes(req,res,message,200))
         .catch(next)
 }
