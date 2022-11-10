@@ -6,7 +6,7 @@ export const useGetSales =async (sinceDate,untilDate) => {
     let URL_ENDPOINT=API_address;
 
     if (!sinceDate,!untilDate) {
-        let today=new Date().toLocaleDateString()
+        let today=new Date().toLocaleDateString('en-US')
         today=today.split('/')
         const month=today[0]
         today[0]=today[1]
