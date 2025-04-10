@@ -1,0 +1,74 @@
+id,category,price,name,item
+1,cocteles,150.00,Coctel Mediano,mediano
+2,cocteles,130.00,Coctel Grande,grande
+3,tostadas,17.00,Tostada de Marlin,marlin
+4,tostadas,15.00,Tostada de ceviche picado,cevichePicado
+5,tostadas,16.00,Tosdada de ceviche molido,cevicheMolido
+6,tostadas,15.00,Tostada de ceviche de camarón,cevicheCamaron
+7,tostadas,15.00,Tostada de camarón,camaron
+8,tostadas,15.00,Tostada de pulpo,pulpo
+9,tacos,15.00,Taco de camarón,camaron
+10,tacos,15.00,Taco de pescado,pescado
+11,tacos,15.00,Taco de marlin,marlin
+12,filetes,15.00,Filete empanizado,empanizado
+13,filetes,15.00,Filete al mojo de ajo,mojoDeAjo
+14,filetes,15.00,Filete a la mantequilla,mantequilla
+15,filetes,15.00,Filete al vapor,vapor
+16,filetes,15.00,Filete al ajillo,ajillo
+17,filetes,15.00,Filete a la veracruzana,veracruzana
+18,filetes,15.00,Filete a la diabla,diabla
+19,filetes,15.00,Media orden de filete,mediaOrdenFilete
+20,filetes,15.00,Media orden de filete empanizado,mediaOrdenEmpanizado
+21,bebidas,15.00,Victoria,victoria
+22,bebidas,15.00,Corona,corona
+23,bebidas,15.00,Pacífico,pacifico
+24,bebidas,15.00,Negra modelo,negraModelo
+25,bebidas,15.00,Modelo especial,modeloEspecial
+26,bebidas,15.00,Corona Light,coronaLight
+27,bebidas,15.00,Michelada,michelada
+28,bebidas,15.00,Refrescos,refrescos
+29,bebidas,15.00,"Taparosca, Bote, Ligth",taparosca
+30,bebidas,15.00,Cerveza de Raíz,cervezaRaiz
+31,bebidas,15.00,Agua Fresca,aguaFresca
+32,bebidas,15.00,Botella de agua,botellaAgua
+33,bebidas,15.00,Clamato,clamato
+34,camarones,150.00,Camarones cabeza,cabeza
+35,camarones,150.00,Camarones pelados,pelados
+36,camarones,150.00,Camarones empanizados,empanizado
+37,camarones,150.00,Camarones Mexicana,mexicana
+38,camarones,150.00,Media Orden Pelados,mediaOrdenPelados
+39,ordenes,75.00,Orden de marlin,marlin
+40,ordenes,75.00,Orden de ceviche picado,cevichePicado
+41,ordenes,75.00,Orden de ceviche molido,cevicheMolido
+42,ordenes,75.00,Orden de ceviche de camarón,cevicheCamaron
+43,ordenes,75.00,Emp. de Marlin,empMarlin
+44,ordenes,75.00,Orden de preparado,preparado
+45,botanas,80.00,Aguachile Verde,aguachileVerde
+46,botanas,80.00,Aguachile Negro,aguachileNegro
+47,botanas,80.00,Botana de Camarón,camaron
+48,botanas,80.00,Botana de Camarón,pulpo
+49,botanas,80.00,Ensalada de Camarón,ensaladaCamaron
+50,botanas,80.00,Media Orden Botana,mediaOrdenBotana
+51,sopas,85.00,Sopa de mariscos grande,mariscosGrande
+52,sopas,85.00,Sopa de mariscos chica,mariscosChica
+53,sopas,85.00,Caldo de camarón grande,camaronGrande
+54,sopas,85.00,Caldo de camarón chico,camaronChica
+55,sopas,85.00,Albóndigas de pescado,albondigas
+56,postres,20.00,Flan de Caramelo,caramelo
+57,postres,20.00,Flan de Cajeta,cajeta
+58,pescados,120.00,Mojarra Dorada,mojarraDorada
+59,pescados,120.00,Mojarra Mojo de Ajo,mojarraMojoDeAjo
+60,pescados,120.00,Huachinango Dorado,huachiDorado
+61,pescados,120.00,Huachinango Mojo de Ajo,huachiMojoDeAjo
+62,pulpos,175.00,Pulpo a la diabla,diabla
+63,pulpos,175.00,Pulpo al mojo de ajo,mojoDeAjo
+64,pulpos,175.00,Pulpo a la mantequilla,mantequilla
+65,pulpos,175.00,Pulpo a la mexicana,mexicana
+66,pulpos,1750.00,Pulpo al ajillo,ajillo
+67,otros,17.00,Ord Aguacate Grande,aguacateGrande
+68,otros,17.00,Ord Arroz Grande,arrozGrande
+69,otros,17.00,Ord Aguacate Chica,aguacateChica
+70,otros,17.00,Ord Arroz Chica,arrozChica
+71,otros,17.00,Mantequilla Diabla,diabla
+72,otros,17.00,Ord Ajo,ajo
+73,otros,17.00,Ord Consomé,consome

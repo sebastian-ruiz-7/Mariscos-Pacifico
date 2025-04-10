@@ -1,0 +1,513 @@
+[
+    {
+      "id": 1,
+      "category": "cocteles",
+      "price": 150,
+      "name": "Coctel Mediano",
+      "item": "mediano"
+    },
+    {
+      "id": 2,
+      "category": "cocteles",
+      "price": 130,
+      "name": "Coctel Grande",
+      "item": "grande"
+    },
+    {
+      "id": 3,
+      "category": "tostadas",
+      "price": 17,
+      "name": "Tostada de Marlin",
+      "item": "marlin"
+    },
+    {
+      "id": 4,
+      "category": "tostadas",
+      "price": 15,
+      "name": "Tostada de ceviche picado",
+      "item": "cevichePicado"
+    },
+    {
+      "id": 5,
+      "category": "tostadas",
+      "price": 16,
+      "name": "Tosdada de ceviche molido",
+      "item": "cevicheMolido"
+    },
+    {
+      "id": 6,
+      "category": "tostadas",
+      "price": 15,
+      "name": "Tostada de ceviche de camarón",
+      "item": "cevicheCamaron"
+    },
+    {
+      "id": 7,
+      "category": "tostadas",
+      "price": 15,
+      "name": "Tostada de camarón",
+      "item": "camaron"
+    },
+    {
+      "id": 8,
+      "category": "tostadas",
+      "price": 15,
+      "name": "Tostada de pulpo",
+      "item": "pulpo"
+    },
+    {
+      "id": 9,
+      "category": "tacos",
+      "price": 15,
+      "name": "Taco de camarón",
+      "item": "camaron"
+    },
+    {
+      "id": 10,
+      "category": "tacos",
+      "price": 15,
+      "name": "Taco de pescado",
+      "item": "pescado"
+    },
+    {
+      "id": 11,
+      "category": "tacos",
+      "price": 15,
+      "name": "Taco de marlin",
+      "item": "marlin"
+    },
+    {
+      "id": 12,
+      "category": "filetes",
+      "price": 15,
+      "name": "Filete empanizado",
+      "item": "empanizado"
+    },
+    {
+      "id": 13,
+      "category": "filetes",
+      "price": 15,
+      "name": "Filete al mojo de ajo",
+      "item": "mojoDeAjo"
+    },
+    {
+      "id": 14,
+      "category": "filetes",
+      "price": 15,
+      "name": "Filete a la mantequilla",
+      "item": "mantequilla"
+    },
+    {
+      "id": 15,
+      "category": "filetes",
+      "price": 15,
+      "name": "Filete al vapor",
+      "item": "vapor"
+    },
+    {
+      "id": 16,
+      "category": "filetes",
+      "price": 15,
+      "name": "Filete al ajillo",
+      "item": "ajillo"
+    },
+    {
+      "id": 17,
+      "category": "filetes",
+      "price": 15,
+      "name": "Filete a la veracruzana",
+      "item": "veracruzana"
+    },
+    {
+      "id": 18,
+      "category": "filetes",
+      "price": 15,
+      "name": "Filete a la diabla",
+      "item": "diabla"
+    },
+    {
+      "id": 19,
+      "category": "filetes",
+      "price": 15,
+      "name": "Media orden de filete",
+      "item": "mediaOrdenFilete"
+    },
+    {
+      "id": 20,
+      "category": "filetes",
+      "price": 15,
+      "name": "Media orden de filete empanizado",
+      "item": "mediaOrdenEmpanizado"
+    },
+    {
+      "id": 21,
+      "category": "bebidas",
+      "price": 15,
+      "name": "Victoria",
+      "item": "victoria"
+    },
+    {
+      "id": 22,
+      "category": "bebidas",
+      "price": 15,
+      "name": "Corona",
+      "item": "corona"
+    },
+    {
+      "id": 23,
+      "category": "bebidas",
+      "price": 15,
+      "name": "Pacífico",
+      "item": "pacifico"
+    },
+    {
+      "id": 24,
+      "category": "bebidas",
+      "price": 15,
+      "name": "Negra modelo",
+      "item": "negraModelo"
+    },
+    {
+      "id": 25,
+      "category": "bebidas",
+      "price": 15,
+      "name": "Modelo especial",
+      "item": "modeloEspecial"
+    },
+    {
+      "id": 26,
+      "category": "bebidas",
+      "price": 15,
+      "name": "Corona Light",
+      "item": "coronaLight"
+    },
+    {
+      "id": 27,
+      "category": "bebidas",
+      "price": 15,
+      "name": "Michelada",
+      "item": "michelada"
+    },
+    {
+      "id": 28,
+      "category": "bebidas",
+      "price": 15,
+      "name": "Refrescos",
+      "item": "refrescos"
+    },
+    {
+      "id": 29,
+      "category": "bebidas",
+      "price": 15,
+      "name": "Taparosca, Bote, Ligth",
+      "item": "taparosca"
+    },
+    {
+      "id": 30,
+      "category": "bebidas",
+      "price": 15,
+      "name": "Cerveza de Raíz",
+      "item": "cervezaRaiz"
+    },
+    {
+      "id": 31,
+      "category": "bebidas",
+      "price": 15,
+      "name": "Agua Fresca",
+      "item": "aguaFresca"
+    },
+    {
+      "id": 32,
+      "category": "bebidas",
+      "price": 15,
+      "name": "Botella de agua",
+      "item": "botellaAgua"
+    },
+    {
+      "id": 33,
+      "category": "bebidas",
+      "price": 15,
+      "name": "Clamato",
+      "item": "clamato"
+    },
+    {
+      "id": 34,
+      "category": "camarones",
+      "price": 150,
+      "name": "Camarones cabeza",
+      "item": "cabeza"
+    },
+    {
+      "id": 35,
+      "category": "camarones",
+      "price": 150,
+      "name": "Camarones pelados",
+      "item": "pelados"
+    },
+    {
+      "id": 36,
+      "category": "camarones",
+      "price": 150,
+      "name": "Camarones empanizados",
+      "item": "empanizado"
+    },
+    {
+      "id": 37,
+      "category": "camarones",
+      "price": 150,
+      "name": "Camarones Mexicana",
+      "item": "mexicana"
+    },
+    {
+      "id": 38,
+      "category": "camarones",
+      "price": 150,
+      "name": "Media Orden Pelados",
+      "item": "mediaOrdenPelados"
+    },
+    {
+      "id": 39,
+      "category": "ordenes",
+      "price": 75,
+      "name": "Orden de marlin",
+      "item": "marlin"
+    },
+    {
+      "id": 40,
+      "category": "ordenes",
+      "price": 75,
+      "name": "Orden de ceviche picado",
+      "item": "cevichePicado"
+    },
+    {
+      "id": 41,
+      "category": "ordenes",
+      "price": 75,
+      "name": "Orden de ceviche molido",
+      "item": "cevicheMolido"
+    },
+    {
+      "id": 42,
+      "category": "ordenes",
+      "price": 75,
+      "name": "Orden de ceviche de camarón",
+      "item": "cevicheCamaron"
+    },
+    {
+      "id": 43,
+      "category": "ordenes",
+      "price": 75,
+      "name": "Emp. de Marlin",
+      "item": "empMarlin"
+    },
+    {
+      "id": 44,
+      "category": "ordenes",
+      "price": 75,
+      "name": "Orden de preparado",
+      "item": "preparado"
+    },
+    {
+      "id": 45,
+      "category": "botanas",
+      "price": 80,
+      "name": "Aguachile Verde",
+      "item": "aguachileVerde"
+    },
+    {
+      "id": 46,
+      "category": "botanas",
+      "price": 80,
+      "name": "Aguachile Negro",
+      "item": "aguachileNegro"
+    },
+    {
+      "id": 47,
+      "category": "botanas",
+      "price": 80,
+      "name": "Botana de Camarón",
+      "item": "camaron"
+    },
+    {
+      "id": 48,
+      "category": "botanas",
+      "price": 80,
+      "name": "Botana de Camarón",
+      "item": "pulpo"
+    },
+    {
+      "id": 49,
+      "category": "botanas",
+      "price": 80,
+      "name": "Ensalada de Camarón",
+      "item": "ensaladaCamaron"
+    },
+    {
+      "id": 50,
+      "category": "botanas",
+      "price": 80,
+      "name": "Media Orden Botana",
+      "item": "mediaOrdenBotana"
+    },
+    {
+      "id": 51,
+      "category": "sopas",
+      "price": 85,
+      "name": "Sopa de mariscos grande",
+      "item": "mariscosGrande"
+    },
+    {
+      "id": 52,
+      "category": "sopas",
+      "price": 85,
+      "name": "Sopa de mariscos chica",
+      "item": "mariscosChica"
+    },
+    {
+      "id": 53,
+      "category": "sopas",
+      "price": 85,
+      "name": "Caldo de camarón grande",
+      "item": "camaronGrande"
+    },
+    {
+      "id": 54,
+      "category": "sopas",
+      "price": 85,
+      "name": "Caldo de camarón chico",
+      "item": "camaronChica"
+    },
+    {
+      "id": 55,
+      "category": "sopas",
+      "price": 85,
+      "name": "Albóndigas de pescado",
+      "item": "albondigas"
+    },
+    {
+      "id": 56,
+      "category": "postres",
+      "price": 20,
+      "name": "Flan de Caramelo",
+      "item": "caramelo"
+    },
+    {
+      "id": 57,
+      "category": "postres",
+      "price": 20,
+      "name": "Flan de Cajeta",
+      "item": "cajeta"
+    },
+    {
+      "id": 58,
+      "category": "pescados",
+      "price": 120,
+      "name": "Mojarra Dorada",
+      "item": "mojarraDorada"
+    },
+    {
+      "id": 59,
+      "category": "pescados",
+      "price": 120,
+      "name": "Mojarra Mojo de Ajo",
+      "item": "mojarraMojoDeAjo"
+    },
+    {
+      "id": 60,
+      "category": "pescados",
+      "price": 120,
+      "name": "Huachinango Dorado",
+      "item": "huachiDorado"
+    },
+    {
+      "id": 61,
+      "category": "pescados",
+      "price": 120,
+      "name": "Huachinango Mojo de Ajo",
+      "item": "huachiMojoDeAjo"
+    },
+    {
+      "id": 62,
+      "category": "pulpos",
+      "price": 175,
+      "name": "Pulpo a la diabla",
+      "item": "diabla"
+    },
+    {
+      "id": 63,
+      "category": "pulpos",
+      "price": 175,
+      "name": "Pulpo al mojo de ajo",
+      "item": "mojoDeAjo"
+    },
+    {
+      "id": 64,
+      "category": "pulpos",
+      "price": 175,
+      "name": "Pulpo a la mantequilla",
+      "item": "mantequilla"
+    },
+    {
+      "id": 65,
+      "category": "pulpos",
+      "price": 175,
+      "name": "Pulpo a la mexicana",
+      "item": "mexicana"
+    },
+    {
+      "id": 66,
+      "category": "pulpos",
+      "price": 1750,
+      "name": "Pulpo al ajillo",
+      "item": "ajillo"
+    },
+    {
+      "id": 67,
+      "category": "otros",
+      "price": 17,
+      "name": "Ord Aguacate Grande",
+      "item": "aguacateGrande"
+    },
+    {
+      "id": 68,
+      "category": "otros",
+      "price": 17,
+      "name": "Ord Arroz Grande",
+      "item": "arrozGrande"
+    },
+    {
+      "id": 69,
+      "category": "otros",
+      "price": 17,
+      "name": "Ord Aguacate Chica",
+      "item": "aguacateChica"
+    },
+    {
+      "id": 70,
+      "category": "otros",
+      "price": 17,
+      "name": "Ord Arroz Chica",
+      "item": "arrozChica"
+    },
+    {
+      "id": 71,
+      "category": "otros",
+      "price": 17,
+      "name": "Mantequilla Diabla",
+      "item": "diabla"
+    },
+    {
+      "id": 72,
+      "category": "otros",
+      "price": 17,
+      "name": "Ord Ajo",
+      "item": "ajo"
+    },
+    {
+      "id": 73,
+      "category": "otros",
+      "price": 17,
+      "name": "Ord Consomé",
+      "item": "consome"
+    }
+  ]

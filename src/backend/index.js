@@ -11,6 +11,7 @@ const sales=require('./components/sales/network-Sales')
 const products=require('./components/products/network-Products')
 const auth=require('./auth/network')
 const socket=require('./socket')
+const os=require('os');
 
 //Require err middleware
 const error=require('./errHandler/errMiddleware');
@@ -50,10 +51,39 @@ socket.connect(server)
 //     console.log(socket.id)
 // })
 
-server.listen(config.api.port,'192.168.100.4',(err)=>{
-    if (err) console.log(err)
-    else console.log(`Server listend in port ${config.api.port}`)
-})
+// server.listen(config.api.port,'192.168.100.4',(err)=>{
+//     if (err) console.log(err)
+//     else console.log(`Server listend in port ${config.api.port}`)
+// })
+console.log(process.env.PORT)
+
+if (process.env.NODE_ENV==='development') {
+    const ip=getLANIPAddress()
+    server.listen(parseInt(config.api.port),"0.0.0.0",()=>{
+        console.log(`Server running on ${ip}:${config.api.PORT}`)
+        console.log(`Server is running on http://localhost:${config.api.PORT}`);
+    })
+}else{
+    server.listen(config.api.PORT,()=>{
+        console.log(`server running on port ${config.api.PORT}`)
+    })
+}
+
+
+function getLANIPAddress() {
+    const networkInterfaces = os.networkInterfaces();
+    for (const interfaceName in networkInterfaces) {
+      const addresses = networkInterfaces[interfaceName];
+      if (addresses) {
+        for (const addressInfo of addresses) {
+          if (addressInfo.family === 'IPv4' && !addressInfo.internal) {
+            return addressInfo.address;
+          }
+        }
+      }
+    }
+    return null;
+}
 
 // app.listen(config.api.port,(err)=>{
 //     if (err) console.log(err)
