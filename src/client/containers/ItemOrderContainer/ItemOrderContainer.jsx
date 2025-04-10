@@ -183,6 +183,7 @@ const Otros = ({onClick}) => {
             <ItemOrder category='otros'  item='diabla'         itemName='Mantequilla Diabla'/>
             <ItemOrder category='otros'  item='ajo'            itemName='Ord Ajo'/>
             <ItemOrder category='otros'  item='consome'        itemName='Consomé'/>
+
         </div>
     )
 }

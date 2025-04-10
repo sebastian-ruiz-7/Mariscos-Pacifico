@@ -18,7 +18,6 @@ const CurrentOrderCategoryContainer = ({category,items}) => {
             itemsArray.map(key=>{
               return <ItemOrderCard ItemName={key} ItemCount={items[key]['total']} key={`Item Order Card ${key}`} />
             }))
-
             
         } else{
           return(
