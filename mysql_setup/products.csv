@@ -18,16 +18,15 @@ id,category,price,name,item
 17,filetes,15.00,Filete a la veracruzana,veracruzana
 18,filetes,15.00,Filete a la diabla,diabla
 19,filetes,15.00,Media orden de filete,mediaOrdenFilete
-20,filetes,15.00,Media orden de filete empanizado,mediaOrdenEmpanizado
 21,bebidas,15.00,Victoria,victoria
 22,bebidas,15.00,Corona,corona
 23,bebidas,15.00,Pacífico,pacifico
 24,bebidas,15.00,Negra modelo,negraModelo
 25,bebidas,15.00,Modelo especial,modeloEspecial
-26,bebidas,15.00,Corona Light,coronaLight
+26,bebidas,15.00,Corona Light,coronaLigth
 27,bebidas,15.00,Michelada,michelada
 28,bebidas,15.00,Refrescos,refrescos
-29,bebidas,15.00,"Taparosca, Bote, Ligth",taparosca
+29,bebidas,15.00,"Taparosca, Bote, Light",taparosca
 30,bebidas,15.00,Cerveza de Raíz,cervezaRaiz
 31,bebidas,15.00,Agua Fresca,aguaFresca
 32,bebidas,15.00,Botella de agua,botellaAgua
@@ -46,7 +45,7 @@ id,category,price,name,item
 45,botanas,80.00,Aguachile Verde,aguachileVerde
 46,botanas,80.00,Aguachile Negro,aguachileNegro
 47,botanas,80.00,Botana de Camarón,camaron
-48,botanas,80.00,Botana de Camarón,pulpo
+48,botanas,80.00,Botana de pulpo,pulpo
 49,botanas,80.00,Ensalada de Camarón,ensaladaCamaron
 50,botanas,80.00,Media Orden Botana,mediaOrdenBotana
 51,sopas,85.00,Sopa de mariscos grande,mariscosGrande
